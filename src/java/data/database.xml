@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<REMS>
+  <managers>
+    <manager>
+      <name>Fakunle Samuel</name>
+      <username>faksam</username>
+      <password>password</password>
+      <account_type>Manager</account_type>
+    </manager>
+  </managers>
+  <landlords>
+    <landlord>
+      <name>Fakunle M Samuel</name>
+      <username>faksam</username>
+      <password>password</password>
+    </landlord>
+  </landlords>
+  <tenants />
+  <properties>
+    <commercialProperties>
+      <commercialProperty>
+        <address>Fakunle Samuel</address>
+        <price>faksam</price>
+        <description>password</description>
+        <status>Admin</status>
+        <landlord>Fakunle Samuel</landlord>
+        <building>faksam</building>
+        <comType>password</comType>
+      </commercialProperty>
+    </commercialProperties>
+    <residentialProperties>
+      <residentialProperty>
+        <address>Fakunle Samuel</address>
+        <price>faksam</price>
+        <description>password</description>
+        <status>Admin</status>
+        <landlord>Fakunle Samuel</landlord>
+        <no_rooms>faksam</no_rooms>
+        <no_bath>password</no_bath>
+        <livingArea>Admin</livingArea>
+        <resType>Fakunle Samuel</resType>
+      </residentialProperty>
+    </residentialProperties>
+    <vacantProperties />
+  </properties>
+</REMS>
