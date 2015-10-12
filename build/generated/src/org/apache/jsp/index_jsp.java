@@ -78,41 +78,128 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    <!-- Navigation -->\n");
       out.write("    <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n");
-      out.write("        <div class=\"container\">\n");
-      out.write("            <!-- Brand and toggle get grouped for better mobile display -->\n");
-      out.write("            <div class=\"navbar-header\">\n");
-      out.write("                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n");
-      out.write("                    <span class=\"sr-only\">Toggle navigation</span>\n");
-      out.write("                    <span class=\"icon-bar\"></span>\n");
-      out.write("                    <span class=\"icon-bar\"></span>\n");
-      out.write("                    <span class=\"icon-bar\"></span>\n");
-      out.write("                </button>\n");
-      out.write("                <a class=\"navbar-brand\" href=\"index.jsp\">REM</a>\n");
-      out.write("            </div>\n");
-      out.write("            <!-- Collect the nav links, forms, and other content for toggling -->\n");
-      out.write("            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
-      out.write("                <ul class=\"nav navbar-nav\">\n");
+      out.write("            <div class=\"container\">\n");
+      out.write("                <!-- Brand and toggle get grouped for better mobile display -->\n");
+      out.write("                <div class=\"navbar-header\">\n");
+      out.write("                    <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n");
+      out.write("                        <span class=\"sr-only\">Toggle navigation</span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                    </button>\n");
+      out.write("                    <a class=\"navbar-brand\" href=\"index.jsp\">REM</a>\n");
+      out.write("                </div>\n");
+      out.write("                <!-- Collect the nav links, forms, and other content for toggling -->\n");
+      out.write("                <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
+      out.write("                    <ul class=\"nav navbar-nav\">\n");
+      out.write("                        ");
+ if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ 
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Add \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            \n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                <li><a href=\"addUser.jsp\">User</a></li>\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Vacant Land</a></li>\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Residential Property</a></li>\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Commercial Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                            \n");
+      out.write("                        </li>\n");
+      out.write("                        ");
+ }
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Search \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                <li><a href=\"searchUser.jsp\">User</a></li>\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Vacant Land</a></li>\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Residential Property</a></li>\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Commercial Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                        </li>\n");
+      out.write("                        ");
+ if((session.getAttribute("Manager")!=null)){ 
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Update \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                <li><a href=\"#\">User</a></li>\n");
+      out.write("                                <li><a href=\"#\">Vacant Land</a></li>\n");
+      out.write("                                <li><a href=\"#\">Residential Property</a></li>\n");
+      out.write("                                <li><a href=\"#\">Commercial Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                        </li>\n");
+      out.write("                       ");
+ }
+      out.write("\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"services.jsp\">Services</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"contact.jsp\">Contact</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"about.jsp\">About</a>\n");
+      out.write("                        </li>\n");
+      out.write("                    </ul>\n");
+      out.write("                    <ul class=\"nav navbar-nav navbar-right\">\n");
+      out.write("                        ");
+  String currentUser="";
+                            if(session.getAttribute("Manager") != null)
+                                 currentUser=""+session.getAttribute("Manager");
+                                if(session.getAttribute("Landlord")!= null)
+                                    currentUser=""+session.getAttribute("Landlord");
+                                if(session.getAttribute("Tenant") != null)
+                                    currentUser=""+session.getAttribute("Tenant");
+                                
+                            if((session.getAttribute("Manager") != null)
+                                 || (session.getAttribute("Landlord")!= null)
+                                   || (session.getAttribute("Tenant") != null))
+                                    {  
+      out.write("\n");
       out.write("                    <li>\n");
-      out.write("                        <a href=\"about.jsp\">About</a>\n");
+      out.write("                        <a type=\"submit\" href=\"userDetails.jsp\" >");
+      out.print(currentUser);
+      out.write("</a>\n");
       out.write("                    </li>\n");
       out.write("                    <li>\n");
-      out.write("                        <a href=\"services.jsp\">Services</a>\n");
+      out.write("                        <a type=\"submit\" href=\"logOut.jsp\" >Log Out</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    ");
+ }  
+                            else
+                            {
+                    
+      out.write("\n");
+      out.write("                    <li>\n");
+      out.write("                    <a type=\"submit\" href=\"login.jsp\" >Log In </a>\n");
       out.write("                    </li>\n");
       out.write("                    <li>\n");
-      out.write("                        <a href=\"contact.jsp\">Contact</a>\n");
+      out.write("                    <a type=\"submit\" href=\"register.jsp\" >Register</a>\n");
       out.write("                    </li>\n");
-      out.write("                </ul>\n");
-      out.write("                <form class=\"navbar-form navbar-right\" >\n");
-      out.write("                    <a type=\"submit\" href=\"login.jsp\" class=\"btn btn-default\">Log In</a>\n");
       out.write("                    \n");
-      out.write("                    <a type=\"submit\" href=\"register.jsp\" class=\"btn btn-default\">Register</a>\n");
-      out.write("                </form>\n");
-      out.write("                \n");
+      out.write("                    ");
+ }  
+                            
+                    
+      out.write("\n");
+      out.write("                    </ul>\n");
+      out.write("\n");
+      out.write("                </div>\n");
+      out.write("                <!-- /.navbar-collapse -->\n");
       out.write("            </div>\n");
-      out.write("            <!-- /.navbar-collapse -->\n");
-      out.write("        </div>\n");
-      out.write("        <!-- /.container -->\n");
-      out.write("    </nav>\n");
+      out.write("            <!-- /.container -->\n");
+      out.write("        </nav>\n");
       out.write("\n");
       out.write("    <!-- Full Page Image Background Carousel Header -->\n");
       out.write("    <header id=\"myCarousel\" class=\"carousel slide\">\n");
@@ -195,8 +282,60 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        <div class=\"row\">\n");
       out.write("            <div class=\"col-lg-12\">\n");
-      out.write("                <h1>Full Slider by Start Bootstrap</h1>\n");
-      out.write("                <p>The background images for the slider are set directly in the HTML using inline CSS. The rest of the styles for this template are contained within the <code>full-slider.css</code>file.</p>\n");
+      out.write("                <h1>REMS - Real Estate Management System</h1>\n");
+      out.write("            <p>\n");
+      out.write("                REMS helps its user manage any real estate property.\n");
+      out.write("            </p>\n");
+      out.write("            <p>\n");
+      out.write("                Real estate management is the operation, control, and oversight of \n");
+      out.write("                real estate as used in its most broad terms. Management indicates \n");
+      out.write("                a need to be cared for, monitored and accountability given for its \n");
+      out.write("                useful life and condition. This is much akin to the role of management \n");
+      out.write("                in any business.</p>\n");
+      out.write("            <p>\n");
+      out.write("                Real estate management is also the management of personal property, \n");
+      out.write("                equipment, tooling and physical capital assets that are acquired and \n");
+      out.write("                used to build, repair and maintain end item deliverables. Property \n");
+      out.write("                management involves the processes, systems and manpower required to \n");
+      out.write("                manage the life cycle of all acquired property as defined above including \n");
+      out.write("                acquisition, control, accountability, responsibility, maintenance, utilization and disposition.\n");
+      out.write("            </p></div>\n");
+      out.write("            <div class=\"row\">\n");
+      out.write("                <div class=\"col-md-3\">\n");
+      out.write("                    <h2>Tenants</h2>\n");
+      out.write("                    <ul>\n");
+      out.write("                        <li>Sample pages using ASP.NET 5 (MVC 6)</li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkId=518007\">Gulp</a> and <a href=\"http://go.microsoft.com/fwlink/?LinkId=518004\">Bower</a> for managing client-side resources</li>\n");
+      out.write("                        <li>Theming using <a href=\"http://go.microsoft.com/fwlink/?LinkID=398939\">Bootstrap</a></li>\n");
+      out.write("                    </ul>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"col-md-3\">\n");
+      out.write("                    <h2>Property Owner</h2>\n");
+      out.write("                    <ul>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkId=518008\">Conceptual overview of ASP.NET 5</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkId=518008\">Fundamentals in ASP.NET 5</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=517849\">Client-Side Development using npm, Bower and Gulp</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=517850\">Develop on different platforms</a></li>\n");
+      out.write("                    </ul>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"col-md-3\">\n");
+      out.write("                    <h2>Property Manager</h2>\n");
+      out.write("                    <ul>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=398600\">Add Controllers and Views</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=398602\">Add Data using EntityFramework</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=398603\">Add Authentication using Identity</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=517848\">Manage client-side packages using Bower/ Gulp</a></li>\n");
+      out.write("                    </ul>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"col-md-3\">\n");
+      out.write("                    <h2>Learn more</h2>\n");
+      out.write("                    <ul>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=517851\">Run your app locally</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=517852\">Run your app on .NET Core</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=517853\">Run commands in your app</a></li>\n");
+      out.write("                        <li><a href=\"http://go.microsoft.com/fwlink/?LinkID=398609\">Publish to Microsoft Azure Web Apps</a></li>\n");
+      out.write("                    </ul>\n");
+      out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
       out.write("\n");

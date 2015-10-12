@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Search
-    Created on : Oct 10, 2015, 7:33:16 PM
+    Document   : propertyDetails
+    Created on : Oct 12, 2015, 12:41:08 AM
     Author     : Samuel
 --%>
 
@@ -12,11 +12,8 @@
             if((session.getAttribute("login")== null))
                 response.sendRedirect("login.jsp");
        %>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
-        <link href="css/full-slider.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search - Real Estate Management</title>
+        <title>JSP Page</title>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -128,16 +125,5 @@
             </div>
             <!-- /.container -->
         </nav>
-        <header>
-            <div style="margin: 0 auto; width:1080px; height:380px">
-                <a href="#">
-                    <img  width="1080" height="380" src="images/residential-properties-in-bhubaneswar2.jpg" alt=""/>
-                </a>
-            </div>
-        </header>
-        <div class="container">
-        
-        <h1>Hello World!</h1>
-        </div>
     </body>
 </html>
