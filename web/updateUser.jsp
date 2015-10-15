@@ -4,167 +4,120 @@
     Author     : Samuel
 --%>
 
+<%@page import="java.io.FileWriter"%>
+<%@page import="org.jdom2.output.Format"%>
+<%@page import="org.jdom2.output.XMLOutputter"%>
+<%@page import="java.util.List"%>
+<%@page import="org.jdom2.Element"%>
+<%@page import="java.io.File"%>
+<%@page import="BL.myLib"%>
+<%@page import="org.jdom2.input.SAXBuilder"%>
+<%@page import="org.jdom2.Document"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
        <%
-            if((session.getAttribute("login")== null))
+            if((session.getAttribute("Manager")== null))
                 response.sendRedirect("login.jsp");
        %>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
-        <link href="css/full-slider.css" rel="stylesheet" type="text/css"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update User - Real Estate Management</title>
+        
+       
+    <%@include file='navigation.jsp'%>
+       <title>Update User - Real Estate Management</title>
         <script>
 
         </script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">REM</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <% if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Add 
-                                <span class="caret"></span>
-                            </a>
-                            
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="addUser.jsp">User</a></li>
-                                <li><a href="addProperty.jsp">Vacant Land</a></li>
-                                <li><a href="addProperty.jsp">Residential Property</a></li>
-                                <li><a href="addProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                            
-                        </li>
-                        <% }%>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Search 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="searchUser.jsp">User</a></li>
-                                <li><a href="searchProperty.jsp">Vacant Land</a></li>
-                                <li><a href="searchProperty.jsp">Residential Property</a></li>
-                                <li><a href="searchProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                        <% if((session.getAttribute("Manager")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Update 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">User</a></li>
-                                <li><a href="#">Vacant Land</a></li>
-                                <li><a href="#">Residential Property</a></li>
-                                <li><a href="#">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                       <% }%>
-                        <li>
-                            <a href="services.jsp">Services</a>
-                        </li>
-                        <li>
-                            <a href="contact.jsp">Contact</a>
-                        </li>
-                        <li>
-                            <a href="about.jsp">About</a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav navbar-right">
-                        <%  String currentUser="";
-                            if(session.getAttribute("Manager") != null)
-                                 currentUser=""+session.getAttribute("Manager");
-                                if(session.getAttribute("Landlord")!= null)
-                                    currentUser=""+session.getAttribute("Landlord");
-                                if(session.getAttribute("Tenant") != null)
-                                    currentUser=""+session.getAttribute("Tenant");
-                                
-                            if((session.getAttribute("Manager") != null)
-                                 || (session.getAttribute("Landlord")!= null)
-                                   || (session.getAttribute("Tenant") != null))
-                                    {  %>
-                    <li>
-                        <a type="submit" href="userDetails.jsp" ><%=currentUser%></a>
-                    </li>
-                    <li>
-                        <a type="submit" href="logOut.jsp" >Log Out</a>
-                    </li>
-                    <% }  
-                            else
-                            {
-                    %>
-                    <li>
-                    <a type="submit" href="login.jsp" >Log In </a>
-                    </li>
-                    <li>
-                    <a type="submit" href="register.jsp" >Register</a>
-                    </li>
-                    
-                    <% }  
-                            
-                    %>
-                    </ul>
+      <%
+            
+            String Type = request.getParameter("Type");
+            String Name = request.getParameter("Name");
+            String Username = request.getParameter("Username");
+            String Password = "";
+            
+            String _Type = request.getParameter("Type");
+            String _Name = request.getParameter("Name");
+            String _Username = "";
+            String _Password = "";
+            
+            Document xmlDoc = new Document();
+            SAXBuilder saxBuilder = new SAXBuilder();
+            xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
+            
+            
 
-
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <header>
-            <div style="margin: 0 auto; width:1080px; height:380px">
-                <a href="#">
-                    <img  width="1080" height="380" src="images/residential-properties-in-bhubaneswar2.jpg" alt=""/>
-                </a>
-            </div>
-        </header>
+            Element rootElement = xmlDoc.getRootElement();
+            Element _types = rootElement.getChild(Type.toLowerCase()+"s");
+            //Element _type = _types.getChild(Type);
+            Element node =null;
+            
+            List<Element> lstNodes = _types.getChildren();
+                for (int i = 0; i < lstNodes.size(); i++) {
+                   node = (Element) lstNodes.get(i);
+            _Name = node.getChildText("name");
+            _Username = node.getChildText("username");
+            _Password = node.getChildText("password");
+            _Type = node.getChildText("type");
+            System.out.println("Details"+_Name+_Username+_Type+"From Search"+Name+Username+Type);
+            
+            if (Name.equalsIgnoreCase(_Name)&&Type.equalsIgnoreCase(_Type)&&Username.equalsIgnoreCase(_Username)) 
+            {
+                break;
+            }}
+            XMLOutputter outFile = new XMLOutputter();
+            outFile.setFormat(Format.getPrettyFormat());
+            outFile.output(xmlDoc, new FileWriter(myLib.getxmlFile()));				
+            System.out.println("Updated succefully!");
+        %>
         
         <div class="container">
-            <form name="AddUser" action="Submit">
-                <h1 style="text-align: center;">Add User</h1>
+            <form method="post">
+                <h1 style="text-align: center;">Update User</h1>
                 <hr />
                     <div class="form-group">
-                        <p>Name: </p><input class="form-control" data-val="true" required="required" type="text" name="Name" value="" />
+                        <p>Name: </p><input class="form-control" data-val="true" required="required" type="text" name="txtName" value="<%=_Name%>" />
                     </div>
                 <div class="form-group">
-            <p>Username: </p><input class="form-control" data-val="true" required="required"  type="text" name="Username" value="" />
+            <p>Username: </p><input class="form-control" data-val="true" required="required"  type="text" name="txtUsername" value="<%=_Username%>" />
            </div>
             <div class="form-group">
-            <p>Password: </p><input class="form-control" data-val="true" required="required"  type="password" name="Password" value="" />
+            <p>Password: </p><input class="form-control" data-val="true" required="required"  type="password" name="txtPassword" value="<%=_Password%>" />
             </div>
             <div class="form-group">
             <p>Account type:</p>
-            <select class="dropdown" name="AccountType">
+            <select class="dropdown" name="txtType">
+                <option><%=_Type%></option>
                 <option>Manager</option>
                 <option>Landlord</option>
                 <option>Tenant</option>
             </select>
             <br><br>
             </div>
-            <input type="submit" class="btn btn-default" value="Submit" name="addUser" />
+            <input type="submit" class="btn btn-default" value="Update" name="btnUpdateUser" />
             <br><br>
         </form>
         </div>
+        <%
+                if(request.getParameter("btnUpdateUser")!=null){
+                    boolean found=false;
+                    node.detach();
+                    _Type = request.getParameter("txtType");
+                    _Username = request.getParameter("txtUsername");
+                    _Password = request.getParameter("txtPassword");
+                    _Name = request.getParameter("txtName");
+                    
+                    myLib.AddUser(_Name,_Username,_Password,_Type);
+                        
+                    response.sendRedirect("searchUser.jsp");
+                 
+                }
+                outFile = new XMLOutputter();
+            outFile.setFormat(Format.getPrettyFormat());
+            outFile.output(xmlDoc, new FileWriter(myLib.getxmlFile()));				
+            System.out.println("Updated succefully!");
+    %>
     </body>
+    <%@include file='footer.jsp'%>
 </html>

@@ -10,42 +10,78 @@ and open the template in the editor.
       <name>Fakunle Samuel</name>
       <username>faksam</username>
       <password>password</password>
-      <account_type>Manager</account_type>
+      <type>Manager</type>
+    </manager>
+    <manager>
+      <name>Akoji Ib</name>
+      <username>Emi</username>
+      <password>emi</password>
+      <type>Manager</type>
     </manager>
   </managers>
   <landlords>
     <landlord>
-      <name>Fakunle M Samuel</name>
+      <name>Fakunle Samuel</name>
       <username>faksam</username>
-      <password>password</password>
+      <password>admin</password>
+      <type>Landlord</type>
+    </landlord>
+    <landlord>
+      <name>Oga John</name>
+      <username>HanhPhuc</username>
+      <password>123</password>
+      <type>Landlord</type>
+    </landlord>
+    <landlord>
+      <name>faksam</name>
+      <username>life</username>
+      <password>life</password>
+      <type>Landlord</type>
+    </landlord>
+    <landlord>
+      <name>faksam</name>
+      <username>life</username>
+      <password>life</password>
+      <type>Landlord</type>
     </landlord>
   </landlords>
-  <tenants />
+  <tenants>
+    <tenant>
+      <name>Mr Tenant</name>
+      <username>first Tenant</username>
+      <password>123</password>
+      <type>Tenant</type>
+    </tenant>
+    <tenant>
+      <name>faksam</name>
+      <username>life my</username>
+      <password>life</password>
+      <type>Tenant</type>
+    </tenant>
+  </tenants>
   <properties>
     <commercialProperties>
       <commercialProperty>
-        <address>Fakunle Samuel</address>
-        <price>faksam</price>
-        <description>password</description>
-        <status>Admin</status>
-        <landlord>Fakunle Samuel</landlord>
-        <building>faksam</building>
-        <comType>password</comType>
+        <address>FPT University</address>
+        <price>admin</price>
+        <description>admin</description>
+        <status>Available</status>
+        <landlord>Oga John</landlord>
+        <building>Building</building>
+        <type>commercial</type>
       </commercialProperty>
     </commercialProperties>
-    <residentialProperties>
-      <residentialProperty>
-        <address>Fakunle Samuel</address>
-        <price>faksam</price>
-        <description>password</description>
-        <status>Admin</status>
-        <landlord>Fakunle Samuel</landlord>
-        <no_rooms>faksam</no_rooms>
-        <no_bath>password</no_bath>
-        <livingArea>Admin</livingArea>
-        <resType>Fakunle Samuel</resType>
-      </residentialProperty>
-    </residentialProperties>
-    <vacantProperties />
+    <residentialProperties />
+    <vacantLandProperties>
+      <vacantLandProperty>
+        <address>life</address>
+        <price>admin</price>
+        <description>admin</description>
+        <status>Available</status>
+        <landlord>Oga John</landlord>
+        <size>2345678</size>
+        <type>vacantland</type>
+      </vacantLandProperty>
+    </vacantLandProperties>
   </properties>
 </REMS>

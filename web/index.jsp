@@ -1,44 +1,25 @@
 <%-- 
     Document   : index
-    Created on : Oct 4, 2015, 10:51:50 PM
+    Created on : Oct 10, 2015, 11:16:50 PM
     Author     : Samuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Real Estate Management</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+<html>
+    <head>
+       <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
-    <!-- Custom CSS -->
-    <link href="css/full-slider.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+        <link href="css/full-slider.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <title>Real Estate Management</title>
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -53,7 +34,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <% if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ %>
+                        <% if ((session.getAttribute("Manager") != null)||(session.getAttribute("Landlord")!=null)) { %>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Add 
@@ -61,10 +42,12 @@
                             </a>
                             
                             <ul class="dropdown-menu" role="menu">
+                                <% if((session.getAttribute("Manager")!=null)){ %>
                                 <li><a href="addUser.jsp">User</a></li>
-                                <li><a href="addProperty.jsp">Vacant Land</a></li>
-                                <li><a href="addProperty.jsp">Residential Property</a></li>
-                                <li><a href="addProperty.jsp">Commercial Property</a></li>
+                                    <% }%>
+                                <li><a href="addUser.jsp">Tenant</a></li>
+                                <li><a href="addProperty.jsp">Property</a></li>
+                                
                             </ul>
                             
                         </li>
@@ -75,26 +58,18 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
+                                <% if ((session.getAttribute("Manager") != null)) { %>
                                 <li><a href="searchUser.jsp">User</a></li>
-                                <li><a href="searchProperty.jsp">Vacant Land</a></li>
-                                <li><a href="searchProperty.jsp">Residential Property</a></li>
-                                <li><a href="searchProperty.jsp">Commercial Property</a></li>
+
+                                <% }%>
+                                <li><a href="searchProperty.jsp">Property</a></li>
                             </ul>
                         </li>
-                        <% if((session.getAttribute("Manager")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Update 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">User</a></li>
-                                <li><a href="#">Vacant Land</a></li>
-                                <li><a href="#">Residential Property</a></li>
-                                <li><a href="#">Commercial Property</a></li>
-                            </ul>
+                        <% if ((session.getAttribute("Landlord") != null)) { %>
+                        <li>
+                            <a href="landlordProperty.jsp">My Properties</a>
                         </li>
-                       <% }%>
+                        <% }%>
                         <li>
                             <a href="services.jsp">Services</a>
                         </li>
@@ -105,49 +80,49 @@
                             <a href="about.jsp">About</a>
                         </li>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
-                        <%  String currentUser="";
-                            if(session.getAttribute("Manager") != null)
-                                 currentUser=""+session.getAttribute("Manager");
-                                if(session.getAttribute("Landlord")!= null)
-                                    currentUser=""+session.getAttribute("Landlord");
-                                if(session.getAttribute("Tenant") != null)
-                                    currentUser=""+session.getAttribute("Tenant");
-                                
-                            if((session.getAttribute("Manager") != null)
-                                 || (session.getAttribute("Landlord")!= null)
-                                   || (session.getAttribute("Tenant") != null))
-                                    {  %>
-                    <li>
-                        <a type="submit" href="userDetails.jsp" ><%=currentUser%></a>
-                    </li>
-                    <li>
-                        <a type="submit" href="logOut.jsp" >Log Out</a>
-                    </li>
-                    <% }  
-                            else
-                            {
-                    %>
-                    <li>
-                    <a type="submit" href="login.jsp" >Log In </a>
-                    </li>
-                    <li>
-                    <a type="submit" href="register.jsp" >Register</a>
-                    </li>
-                    
-                    <% }  
-                            
-                    %>
+                        <%  String currentUser = "";
+                            if (session.getAttribute("Manager") != null) {
+                                currentUser = "" + session.getAttribute("Manager");
+                            }
+                            if (session.getAttribute("Landlord") != null) {
+                                currentUser = "" + session.getAttribute("Landlord");
+                            }
+                            if (session.getAttribute("Tenant") != null) {
+                                currentUser = "" + session.getAttribute("Tenant");
+                            }
+
+                            if ((session.getAttribute("Manager") != null)
+                                    || (session.getAttribute("Landlord") != null)
+                                    || (session.getAttribute("Tenant") != null)) {%>
+                        <li>
+                            <a type="submit" href="userDetails.jsp" ><%=currentUser%></a>
+                        </li>
+                        <li>
+                            <a type="submit" href="logOut.jsp" >Log Out</a>
+                        </li>
+                        <% } else {
+                        %>
+                        <li>
+                            <a type="submit" href="login.jsp" >Log In </a>
+                        </li>
+                        <li>
+                            <a type="submit" href="register.jsp" >Register</a>
+                        </li>
+
+                        <% }
+
+                        %>
                     </ul>
+
 
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
         </nav>
-
-    <!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
+                    <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -163,18 +138,12 @@
         <div class="carousel-inner">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('images/re-mgmt.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Online Real Estate Manager</h2>
-                </div>
-            </div>
-            <div class="item">
-                <!-- Set the second background image using inline CSS below. -->
                 <div class="fill" style="background-image:url('images/belize-residential-properties.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Residential Property (Single Family)</h2>
                 </div>
             </div>
+            
             <div class="item">
                 <!-- Set the third background image using inline CSS below. -->
                 <div class="fill" style="background-image:url('images/residential_forlease.jpg');"></div>
@@ -210,6 +179,13 @@
                     <h2>Vacant Land</h2>
                 </div>
             </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('images/re-mgmt.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Online Real Estate Manager</h2>
+                </div>
+            </div>
         </div>
 
         <!-- Controls -->
@@ -221,7 +197,6 @@
         </a>
 
     </header>
-
     <!-- Page Content -->
     <div class="container">
 
@@ -247,38 +222,50 @@
             </p></div>
             <div class="row">
                 <div class="col-md-3">
-                    <h2>Tenants</h2>
-                    <ul>
-                        <li>Sample pages using ASP.NET 5 (MVC 6)</li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=518007">Gulp</a> and <a href="http://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side resources</li>
-                        <li>Theming using <a href="http://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h2>Property Owner</h2>
-                    <ul>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of ASP.NET 5</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Fundamentals in ASP.NET 5</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517849">Client-Side Development using npm, Bower and Gulp</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517850">Develop on different platforms</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
                     <h2>Property Manager</h2>
                     <ul>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add Controllers and Views</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=398602">Add Data using EntityFramework</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=398603">Add Authentication using Identity</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517848">Manage client-side packages using Bower/ Gulp</a></li>
+                        <li>Log In</li>
+                        <li>Add new property</li>
+                        <li>Search Property</li>
+                        <li>Edit property details</li>
+                        <li>Add new property owner</li>
+                        <li>Search Property owner</li>
+                        <li>Edit property owner details</li>
+                        <li>Add new tenant</li>
+                        <li>Search tenant</li>
+                        <li>Edit tenant details</li>
+                        <li>Check personal details</li>
+                        <li>Edit personal details</li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-3">
+                    <h2>Property Owner's can:</h2>
+                    <ul>
+                        <li>Log In</li>
+                        <li>Search Property</li>
+                        <li>Edit property details</li>
+                        <li>Check personal details</li>
+                        <li>Edit personal details</li>
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h2>Learn more</h2>
+                    <h2>Tenant's can:</h2>
                     <ul>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app locally</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517852">Run your app on .NET Core</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run commands in your app</a></li>
-                        <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
+                        <li>Log In</li>
+                        <li>Check personal details</li>
+                        <li>Edit personal details</li>
+                        <li>Search New Property to rent</li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h2>And Lot's more</h2>
+                    <ul>
+                        <li><a href="services.jsp">Other Service's</a></li>
+                        <li><a href="about.jsp">About REMS</a></li>
+                        <li><a href="contact.jsp">Contact REMS</a></li>
+                        <li><a href="register.jsp">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -286,26 +273,10 @@
 
         <hr>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
+        
 
     </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Script to Activate the Carousel -->
+    
     <script>
     $('.carousel').carousel({
         interval: 5000 //changes the speed
@@ -313,6 +284,6 @@
     </script>
 
 </body>
-
+<%@include file='footer.jsp'%>
 </html>
 

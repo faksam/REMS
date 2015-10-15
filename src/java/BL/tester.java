@@ -13,7 +13,10 @@ import com.sun.org.apache.xerces.internal.xs.XSNamespaceItem;
 import com.sun.org.apache.xerces.internal.xs.XSNamespaceItemList;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -49,9 +52,7 @@ public class tester {
         } catch (Exception e) {
             System.out.println(e.toString());
         }*/
-        String Username= "faksam";
-                    String Password= "password";
-                    String AccountType= "Manager";
-        Boolean isFound = false;
-       isFound = myLib.SearchUser(Username, Password, AccountType);
+        Path currentRelativePath = Paths.get("");
+String s = currentRelativePath.toAbsolutePath().toString();
+System.out.println("Current relative path is: " + s);
 }}

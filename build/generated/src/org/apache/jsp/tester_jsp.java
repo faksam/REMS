@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import BL.myLib;
 
 public final class tester_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -10,6 +11,11 @@ public final class tester_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants.add("/login.jsp");
+  }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -48,66 +54,235 @@ public final class tester_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <link href=\"css/myStyle.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <form method='post' id=''  action=''>\n");
-      out.write("            <p>First Name*</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>Last Name*</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>Phone*</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>Email*</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            \n");
-      out.write("            <div style=\"text-align: left; padding-left: 20%;\">\n");
-      out.write("            <p>  Interested in*</p>\n");
-      out.write("            <p> <input type=\"checkbox\" name=\"\" value=\"ON\" />  Property Management</p>\n");
-      out.write("            <p> <input type=\"checkbox\" name=\"\" value=\"ON\" />  Purchasing Investment Property</p>\n");
-      out.write("            <p> <input type=\"checkbox\" name=\"\" value=\"ON\" />  Selling Investment Property</p>\n");
-      out.write("            <p> <input type=\"checkbox\" name=\"\" value=\"ON\" /> Finding a Home to Rent</p>\n");
-      out.write("            <p> <input type=\"checkbox\" name=\"\" value=\"ON\" />  I'm a Current Tenant</p>\n");
-      out.write("            <p> <input type=\"checkbox\" name=\"\" value=\"ON\" />  Other</p>\n");
+      out.write("        <h1>Life</h1>\n");
+      out.write("        ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("        \n");
+      out.write("        <link href=\"css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
+      out.write("        <link href=\"css/myStyle.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
+      out.write("        <link href=\"css/full-slider.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
+      out.write("         <script src=\"js/jquery.js\" type=\"text/javascript\"></script>\n");
+      out.write("         <script src=\"js/bootstrap.min.js\" type=\"text/javascript\"></script>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <title>Log In - Real Estate Management</title>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        \n");
+      out.write("         <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n");
+      out.write("            <div class=\"container\">\n");
+      out.write("                <!-- Brand and toggle get grouped for better mobile display -->\n");
+      out.write("                <div class=\"navbar-header\">\n");
+      out.write("                    <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n");
+      out.write("                        <span class=\"sr-only\">Toggle navigation</span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                    </button>\n");
+      out.write("                    <a class=\"navbar-brand\" href=\"index.jsp\">REM</a>\n");
+      out.write("                </div>\n");
+      out.write("                <!-- Collect the nav links, forms, and other content for toggling -->\n");
+      out.write("                <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
+      out.write("                    <ul class=\"nav navbar-nav\">\n");
+      out.write("                        ");
+ if((session.getAttribute("Manager")!=null)){ 
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Add \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            \n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                \n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Property</a></li>\n");
+      out.write("                        \n");
+      out.write("                                <li><a href=\"addUser.jsp\">User</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                            \n");
+      out.write("                        </li>\n");
+      out.write("                        ");
+ }
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Search \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                ");
+ if((session.getAttribute("Manager")!=null)){ 
+      out.write("\n");
+      out.write("                                <li><a href=\"searchUser.jsp\">User</a></li>\n");
+      out.write("\n");
+      out.write("                               ");
+ }
+      out.write("\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                        </li>\n");
+      out.write("                        \n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"services.jsp\">Services</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"contact.jsp\">Contact</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"about.jsp\">About</a>\n");
+      out.write("                        </li>\n");
+      out.write("                    </ul>\n");
+      out.write("                    \n");
+      out.write("                    <ul class=\"nav navbar-nav navbar-right\">\n");
+      out.write("                        ");
+  String currentUser="";
+                            if(session.getAttribute("Manager") != null)
+                                 currentUser=""+session.getAttribute("Manager");
+                                if(session.getAttribute("Landlord")!= null)
+                                    currentUser=""+session.getAttribute("Landlord");
+                                if(session.getAttribute("Tenant") != null)
+                                    currentUser=""+session.getAttribute("Tenant");
+                                
+                            if((session.getAttribute("Manager") != null)
+                                 || (session.getAttribute("Landlord")!= null)
+                                   || (session.getAttribute("Tenant") != null))
+                                    {  
+      out.write("\n");
+      out.write("                    <li>\n");
+      out.write("                        <a type=\"submit\" href=\"userDetails.jsp\" >");
+      out.print(currentUser);
+      out.write("</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li>\n");
+      out.write("                        <a type=\"submit\" href=\"logOut.jsp\" >Log Out</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    ");
+ }  
+                            else
+                            {
+                    
+      out.write("\n");
+      out.write("                    <li>\n");
+      out.write("                    <a type=\"submit\" href=\"login.jsp\" >Log In </a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li>\n");
+      out.write("                    <a type=\"submit\" href=\"register.jsp\" >Register</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    \n");
+      out.write("                    ");
+ }  
+                            
+                    
+      out.write("\n");
+      out.write("                    </ul>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                </div>\n");
+      out.write("                <!-- /.navbar-collapse -->\n");
       out.write("            </div>\n");
-      out.write("            <p>   What is the address of the home for which you seek a property manager?</p>\n");
-      out.write("            \n");
-      out.write("            <p>   Street Address</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>   Address Line 2</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    City</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    State</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    ZIP Code</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p> What is the address of the home you are thinking of selling?*</p>\n");
-      out.write("            <p>  Street Address</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>   Address Line 2</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    City</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    State</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    ZIP Code</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>    What is your reason for selling?*</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>   What is the current status of the property?</p>\n");
-      out.write("            <select>\n");
-      out.write("                <option value=\"Owner Ocuupied\">Owner Ocuupied</option>\n");
-      out.write("                <option value=\"Vacant\">Vacant</option>\n");
-      out.write("                <option value=\"Tenant Occupied\">Tenant Occupied</option>\n");
-      out.write("                <option value=\"Other\">Other</option>\n");
-      out.write("            </select>\n");
-      out.write("            <p>   Comments*</p>\n");
-      out.write("            <textarea name=\"\" rows=\"10\" cols=\"50\"></textarea>\n");
-      out.write("            <p>    Buying Info - Describe briefly what type of property you're \n");
-      out.write("                interested in buying, location, price range, timeline, etc*</p>\n");
-      out.write("            <textarea name=\"\" rows=\"10\" cols=\"50\"></textarea>\n");
-      out.write("            <p>   How did you find us?</p>\n");
-      out.write("            <select>\n");
-      out.write("                <option value=\"Internet Search\">Internet Search</option>\n");
-      out.write("                <option value=\"Referral\">Referral</option>\n");
-      out.write("                <option value=\"Blog Reader\">Blog Reader</option>\n");
-      out.write("                <option value=\"Phone Book\">Phone Book</option>\n");
-      out.write("                <option value=\"Postcard/mailer\">Postcard/mailer</option>\n");
-      out.write("                <option value=\"Other\">Other</option>\n");
-      out.write("            </select>\n");
-      out.write("            <p>Who may we thank for refering you?</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
-      out.write("            <p>Other: Please Describe</p><input type=\"password\" name=\"Password\" value=\"\" />\n");
+      out.write("            <!-- /.container -->\n");
+      out.write("        </nav>\n");
+      out.write("        <header>\n");
+      out.write("            <div style=\"margin: 0 auto; width:1080px; height:380px\">\n");
+      out.write("                <a href=\"#\">\n");
+      out.write("                    <img  width=\"1080\" height=\"380\" src=\"images/residential-properties-in-bhubaneswar2.jpg\" alt=\"\"/>\n");
+      out.write("                </a>\n");
+      out.write("            </div>\n");
+      out.write("        </header>\n");
+      out.write("        <div class=\"container\">\n");
+      out.write("        \n");
+      out.write("            <h1 style=\"text-align: center;\">Log In!</h1>\n");
+      out.write("        <form>\n");
+      out.write("            <div class=\"form-group\">\n");
+      out.write("            <p>Username:</p> <input class=\"form-control\" type=\"text\" name=\"txtUserName\" value=\"faksam\" required=\"required\"/>\n");
       out.write("            <br><br>\n");
-      out.write("            <input type=\"submit\" value=\"Submit\" name=\"searchUser\" />\n");
+      out.write("            <p>Password:</p><input class=\"form-control\" type=\"text\" name=\"txtPass\" value=\"password\" required=\"required\"/>\n");
       out.write("            <br><br>\n");
+      out.write("            <p>Account Type</p>\n");
+      out.write("            <select class=\"form-control\" name=\"txtAccountType\" required=\"required\">\n");
+      out.write("                <option>Manager</option>\n");
+      out.write("                <option>Landlord</option>\n");
+      out.write("                <option>Tenant</option>\n");
+      out.write("            </select>\n");
+      out.write("            <br><br>\n");
+      out.write("            <input class=\"btn btn-default\" type=\"submit\" value=\"Log In\" name=\"btnUserLogIn\" />\n");
+      out.write("            <br><br>\n");
+      out.write("            </div>\n");
+      out.write("            ");
+
+                if(request.getParameter("btnUserLogIn")!=null){
+                    String Username= request.getParameter("txtUserName");
+                    String Password= request.getParameter("txtPass");
+                    String AccountType= request.getParameter("txtAccountType");
+                    
+                    boolean found=true;
+                    found=myLib.SearchUser(Username,Password,AccountType);
+                    
+      out.write("<p>");
+      out.print(found);
+      out.write("</p>");
+
+                    if(found)
+                    {
+                        
+      out.write(" <p>");
+      out.print(Username);
+      out.write("</p>\n");
+      out.write("                    <p>");
+      out.print(Password);
+      out.write("</p>\n");
+      out.write("                    <p>");
+      out.print(AccountType);
+      out.write("</p>");
+
+                    if(AccountType.equals("Manager"))
+                    {
+                        session.setAttribute("Manager", Username);
+                    }
+                    else if(AccountType.equals("Landlord"))
+                    {
+                        session.setAttribute("Landlord", Username);
+                    }
+                    else if(AccountType.equals("Tenant"))
+                    {
+                        session.setAttribute("Tenant", Username);
+                    }
+                    
+                    response.sendRedirect("index.jsp");
+                    }
+                    else
+                    {
+                        
+      out.write(" <p>User Not found</p>");
+
+                    }
+                }
+    
+      out.write("\n");
       out.write("        </form>\n");
+      out.write("            <!-- Footer -->\n");
+      out.write("        <footer>\n");
+      out.write("            <hr />\n");
+      out.write("            <div class=\"row\">\n");
+      out.write("                <div class=\"col-lg-12\">\n");
+      out.write("                    <p>Copyright &copy; Your Website 2015</p>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            <!-- /.row -->\n");
+      out.write("        </footer>\n");
+      out.write("        </div>\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+      out.write("\n");
+      out.write("        <h1>Life</h1>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

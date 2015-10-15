@@ -11,6 +11,12 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants.add("/navigation.jsp");
+    _jspx_dependants.add("/footer.jsp");
+  }
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
@@ -47,13 +53,24 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("\n");
       out.write("        <link href=\"css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
       out.write("        <link href=\"css/myStyle.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
       out.write("        <link href=\"css/full-slider.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
+      out.write("        <script src=\"js/jquery.js\" type=\"text/javascript\"></script>\n");
+      out.write("        <script src=\"js/bootstrap.min.js\" type=\"text/javascript\"></script>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>About - Real Estate Management</title>\n");
+      out.write("        <title>Add Property - Real Estate Management</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("\n");
       out.write("        <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n");
       out.write("            <div class=\"container\">\n");
       out.write("                <!-- Brand and toggle get grouped for better mobile display -->\n");
@@ -70,7 +87,7 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
       out.write("                    <ul class=\"nav navbar-nav\">\n");
       out.write("                        ");
- if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ 
+ if ((session.getAttribute("Manager") != null)||(session.getAttribute("Landlord")!=null)) { 
       out.write("\n");
       out.write("                        <li class=\"dropdown\">\n");
       out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
@@ -79,10 +96,20 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </a>\n");
       out.write("                            \n");
       out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                ");
+ if((session.getAttribute("Manager")!=null)){ 
+      out.write("\n");
       out.write("                                <li><a href=\"addUser.jsp\">User</a></li>\n");
-      out.write("                                <li><a href=\"addProperty.jsp\">Vacant Land</a></li>\n");
-      out.write("                                <li><a href=\"addProperty.jsp\">Residential Property</a></li>\n");
-      out.write("                                <li><a href=\"addProperty.jsp\">Commercial Property</a></li>\n");
+      out.write("                                    ");
+ }
+      out.write("\n");
+      out.write("                                ");
+ if((session.getAttribute("Landlord")!=null)){ 
+      out.write("\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Property</a></li>\n");
+      out.write("                                    ");
+ }
+      out.write("\n");
       out.write("                            </ul>\n");
       out.write("                            \n");
       out.write("                        </li>\n");
@@ -95,28 +122,24 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <span class=\"caret\"></span>\n");
       out.write("                            </a>\n");
       out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                ");
+ if ((session.getAttribute("Manager") != null)) { 
+      out.write("\n");
       out.write("                                <li><a href=\"searchUser.jsp\">User</a></li>\n");
-      out.write("                                <li><a href=\"searchProperty.jsp\">Vacant Land</a></li>\n");
-      out.write("                                <li><a href=\"searchProperty.jsp\">Residential Property</a></li>\n");
-      out.write("                                <li><a href=\"searchProperty.jsp\">Commercial Property</a></li>\n");
+      out.write("\n");
+      out.write("                                ");
+ }
+      out.write("\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Property</a></li>\n");
       out.write("                            </ul>\n");
       out.write("                        </li>\n");
       out.write("                        ");
- if((session.getAttribute("Manager")!=null)){ 
+ if ((session.getAttribute("Landlord") != null)) { 
       out.write("\n");
-      out.write("                        <li class=\"dropdown\">\n");
-      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
-      out.write("                                Update \n");
-      out.write("                                <span class=\"caret\"></span>\n");
-      out.write("                            </a>\n");
-      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
-      out.write("                                <li><a href=\"#\">User</a></li>\n");
-      out.write("                                <li><a href=\"#\">Vacant Land</a></li>\n");
-      out.write("                                <li><a href=\"#\">Residential Property</a></li>\n");
-      out.write("                                <li><a href=\"#\">Commercial Property</a></li>\n");
-      out.write("                            </ul>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"landlordProperty.jsp\">My Properties</a>\n");
       out.write("                        </li>\n");
-      out.write("                       ");
+      out.write("                        ");
  }
       out.write("\n");
       out.write("                        <li>\n");
@@ -129,48 +152,50 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <a href=\"about.jsp\">About</a>\n");
       out.write("                        </li>\n");
       out.write("                    </ul>\n");
+      out.write("\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-right\">\n");
       out.write("                        ");
-  String currentUser="";
-                            if(session.getAttribute("Manager") != null)
-                                 currentUser=""+session.getAttribute("Manager");
-                                if(session.getAttribute("Landlord")!= null)
-                                    currentUser=""+session.getAttribute("Landlord");
-                                if(session.getAttribute("Tenant") != null)
-                                    currentUser=""+session.getAttribute("Tenant");
-                                
-                            if((session.getAttribute("Manager") != null)
-                                 || (session.getAttribute("Landlord")!= null)
-                                   || (session.getAttribute("Tenant") != null))
-                                    {  
+  String currentUser = "";
+                            if (session.getAttribute("Manager") != null) {
+                                currentUser = "" + session.getAttribute("Manager");
+                            }
+                            if (session.getAttribute("Landlord") != null) {
+                                currentUser = "" + session.getAttribute("Landlord");
+                            }
+                            if (session.getAttribute("Tenant") != null) {
+                                currentUser = "" + session.getAttribute("Tenant");
+                            }
+
+                            if ((session.getAttribute("Manager") != null)
+                                    || (session.getAttribute("Landlord") != null)
+                                    || (session.getAttribute("Tenant") != null)) {
       out.write("\n");
-      out.write("                    <li>\n");
-      out.write("                        <a type=\"submit\" href=\"userDetails.jsp\" >");
+      out.write("                        <li>\n");
+      out.write("                            <a type=\"submit\" href=\"userDetails.jsp\" >");
       out.print(currentUser);
       out.write("</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    <li>\n");
-      out.write("                        <a type=\"submit\" href=\"logOut.jsp\" >Log Out</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    ");
- }  
-                            else
-                            {
-                    
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a type=\"submit\" href=\"logOut.jsp\" >Log Out</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        ");
+ } else {
+                        
       out.write("\n");
-      out.write("                    <li>\n");
-      out.write("                    <a type=\"submit\" href=\"login.jsp\" >Log In </a>\n");
-      out.write("                    </li>\n");
-      out.write("                    <li>\n");
-      out.write("                    <a type=\"submit\" href=\"register.jsp\" >Register</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    \n");
-      out.write("                    ");
- }  
-                            
-                    
+      out.write("                        <li>\n");
+      out.write("                            <a type=\"submit\" href=\"login.jsp\" >Log In </a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a type=\"submit\" href=\"register.jsp\" >Register</a>\n");
+      out.write("                        </li>\n");
+      out.write("\n");
+      out.write("                        ");
+ }
+
+                        
       out.write("\n");
       out.write("                    </ul>\n");
+      out.write("\n");
       out.write("\n");
       out.write("                </div>\n");
       out.write("                <!-- /.navbar-collapse -->\n");
@@ -184,6 +209,15 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </a>\n");
       out.write("            </div>\n");
       out.write("        </header>\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+      out.write("\n");
+      out.write("        <title>About - Real Estate Management</title>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        \n");
+      out.write("         \n");
+      out.write("         \n");
       out.write("        <div class=\"container\">\n");
       out.write("            <h1>REMS - Real Estate Management System</h1>\n");
       out.write("            <p>\n");
@@ -205,6 +239,27 @@ public final class about_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </p>\n");
       out.write("        </div>\n");
       out.write("    </body>\n");
+      out.write("    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <title>JSP Page</title>\n");
+      out.write("    </head>\n");
+      out.write("    <footer style=\"text-align: center;\">\n");
+      out.write("            <hr />\n");
+      out.write("            <div class=\"row\">\n");
+      out.write("                <div class=\"col-lg-12\">\n");
+      out.write("                    <p>Copyright &copy; Your Website 2015</p>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            <!-- /.row -->\n");
+      out.write("        </footer>\n");
+      out.write("</html>\n");
+      out.write("\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

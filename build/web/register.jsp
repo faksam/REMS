@@ -4,178 +4,36 @@
     Author     : Samuel
 --%>
 
+<%@page import="BL.myLib"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
-        <link href="css/full-slider.css" rel="stylesheet" type="text/css"/>
+        
+    <%@include file='navigation.jsp'%>
         <title>Register - Real Estate Management</title>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">REM</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <% if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Add 
-                                <span class="caret"></span>
-                            </a>
-                            
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="addUser.jsp">User</a></li>
-                                <li><a href="addProperty.jsp">Vacant Land</a></li>
-                                <li><a href="addProperty.jsp">Residential Property</a></li>
-                                <li><a href="addProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                            
-                        </li>
-                        <% }%>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Search 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="searchUser.jsp">User</a></li>
-                                <li><a href="searchProperty.jsp">Vacant Land</a></li>
-                                <li><a href="searchProperty.jsp">Residential Property</a></li>
-                                <li><a href="searchProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                        <% if((session.getAttribute("Manager")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Update 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">User</a></li>
-                                <li><a href="#">Vacant Land</a></li>
-                                <li><a href="#">Residential Property</a></li>
-                                <li><a href="#">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                       <% }%>
-                        <li>
-                            <a href="services.jsp">Services</a>
-                        </li>
-                        <li>
-                            <a href="contact.jsp">Contact</a>
-                        </li>
-                        <li>
-                            <a href="about.jsp">About</a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav navbar-nav navbar-right">
-                        <%  String currentUser="";
-                            if(session.getAttribute("Manager") != null)
-                                 currentUser=""+session.getAttribute("Manager");
-                                if(session.getAttribute("Landlord")!= null)
-                                    currentUser=""+session.getAttribute("Landlord");
-                                if(session.getAttribute("Tenant") != null)
-                                    currentUser=""+session.getAttribute("Tenant");
-                                
-                            if((session.getAttribute("Manager") != null)
-                                 || (session.getAttribute("Landlord")!= null)
-                                   || (session.getAttribute("Tenant") != null))
-                                    {  %>
-                    <li>
-                        <a type="submit" href="userDetails.jsp" ><%=currentUser%></a>
-                    </li>
-                    <li>
-                        <a type="submit" href="logOut.jsp" >Log Out</a>
-                    </li>
-                    <% }  
-                            else
-                            {
-                    %>
-                    <li>
-                    <a type="submit" href="login.jsp" >Log In </a>
-                    </li>
-                    <li>
-                    <a type="submit" href="register.jsp" >Register</a>
-                    </li>
-                    
-                    <% }  
-                            
-                    %>
-                    </ul>
-
-
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <header>
-            <div style="margin: 0 auto; width:1080px; height:380px">
-                <a href="#">
-                    <img  width="1080" height="380" src="images/residential-properties-in-bhubaneswar2.jpg" alt=""/>
-                </a>
-            </div>
-        </header>
+       
         <div class="container">
-        
-        <form method='post' id=''  action=''>
-            <p>First Name*</p><input type="password" name="Password" value="" />
-            <p>Last Name*</p><input type="password" name="Password" value="" />
-            <p>Phone*</p><input type="password" name="Password" value="" />
-            <p>Email*</p><input type="password" name="Password" value="" />
-            
-            <div style="text-align: left; padding-left: 20%;">
-            <p>  Interested in*</p>
-            <p> <input type="checkbox" name="" value="ON" />  Property Management</p>
-            <p> <input type="checkbox" name="" value="ON" />  Purchasing Investment Property</p>
-            <p> <input type="checkbox" name="" value="ON" />  Selling Investment Property</p>
-            <p> <input type="checkbox" name="" value="ON" /> Finding a Home to Rent</p>
-            <p> <input type="checkbox" name="" value="ON" />  I'm a Current Tenant</p>
-            <p> <input type="checkbox" name="" value="ON" />  Other</p>
-            </div>
-            <p>   What is the address of the home for which you seek a property manager?</p>
-            
-            <p>   Street Address</p><input type="password" name="Password" value="" />
-            <p>   Address Line 2</p><input type="password" name="Password" value="" />
-            <p>    City</p><input type="password" name="Password" value="" />
-            <p>    State</p><input type="password" name="Password" value="" />
-            <p>    ZIP Code</p><input type="password" name="Password" value="" />
-            <p> What is the address of the home you are thinking of selling?*</p>
-            <p>  Street Address</p><input type="password" name="Password" value="" />
-            <p>   Address Line 2</p><input type="password" name="Password" value="" />
-            <p>    City</p><input type="password" name="Password" value="" />
-            <p>    State</p><input type="password" name="Password" value="" />
-            <p>    ZIP Code</p><input type="password" name="Password" value="" />
-            <p>    What is your reason for selling?*</p><input type="password" name="Password" value="" />
-            <p>   What is the current status of the property?</p>
-            <select>
-                <option value="Owner Ocuupied">Owner Ocuupied</option>
-                <option value="Vacant">Vacant</option>
-                <option value="Tenant Occupied">Tenant Occupied</option>
-                <option value="Other">Other</option>
-            </select>
-            <p>   Comments*</p>
-            <textarea name="" rows="10" cols="50"></textarea>
-            <p>    Buying Info - Describe briefly what type of property you're 
-                interested in buying, location, price range, timeline, etc*</p>
-            <textarea name="" rows="10" cols="50"></textarea>
+        <h1 style="text-align: center;">Register as a real estate manager</h1>
+                <hr />
+                <div class="form-group">
+            <form class="">
+            <p>Name*</p><input class="form-control" type="text" name="txtName" value="" />
+            <br><br>
+            <p>Username*</p><input class="form-control" type="text" name="txtUsername" value="" />
+            <br><br>
+            <p>Password*</p><input class="form-control" type="password" name="txtPassword" value="" />
+            <br><br>
+            <p>Confirm Password*</p><input class="form-control" type="password" name="Password" value="" />
+            <br><br>
+            <p>Phone*</p><input class="form-control" type="text" name="Password" value="" />
+            <br><br>
+            <p>Email*</p><input class="form-control" type="text" name="Password" value="" />
+            <br> <br>          
             <p>   How did you find us?</p>
-            <select>
+            <select class="form-control">
                 <option value="Internet Search">Internet Search</option>
                 <option value="Referral">Referral</option>
                 <option value="Blog Reader">Blog Reader</option>
@@ -183,12 +41,34 @@
                 <option value="Postcard/mailer">Postcard/mailer</option>
                 <option value="Other">Other</option>
             </select>
-            <p>Who may we thank for refering you?</p><input type="password" name="Password" value="" />
-            <p>Other: Please Describe</p><input type="password" name="Password" value="" />
             <br><br>
-            <input type="submit" value="Submit" name="searchUser" />
+            <p>Who may we thank for refering you?</p><input class="form-control" type="text" name="Password" value="" />
+            <br><br>
+            <p>Other: Please Describe</p><input class="form-control" type="password" name="text" value="" />
+            <br><br>
+            <input class="btn btn-default" type="submit" value="Submit" name="btnRegister" />
             <br><br>
         </form>
+                    </div>
+                <%
+                if(request.getParameter("btnRegister")!=null){
+                    boolean found=false;
+                    String Name = request.getParameter("txtName");
+                    String Username = request.getParameter("txtUsername");
+                    String Password = request.getParameter("txtPassword");
+                    String AccountType = "Manager";
+                    
+                    myLib.AddUser(Name,Username,Password,AccountType);
+                    
+                    //boolean found=false;
+                    //found=myLib.SearchUser(Username,Password,AccountType);
+                   
+                    response.sendRedirect("login.jsp");
+                 
+                }
+    %>
         </div>
+        
     </body>
+    <%@include file='footer.jsp'%>
 </html>

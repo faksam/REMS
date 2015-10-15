@@ -4,164 +4,66 @@
     Author     : Samuel
 --%>
 
+<%@page import="BL.myLib"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <%
             if((session.getAttribute("Manager")== null))
-                response.sendRedirect("index.jsp");
+                if((session.getAttribute("Landlord")== null))
+                    response.sendRedirect("index.jsp");
        %>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
-        <link href="css/full-slider.css" rel="stylesheet" type="text/css"/>
-         <script src="js/jquery.js" type="text/javascript"></script>
-         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <%@include file='navigation.jsp'%>
         <title>Add Users - Real Estate Management</title>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">REM</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <% if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Add 
-                                <span class="caret"></span>
-                            </a>
-                            
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="addUser.jsp">User</a></li>
-                                <li><a href="addProperty.jsp">Vacant Land</a></li>
-                                <li><a href="addProperty.jsp">Residential Property</a></li>
-                                <li><a href="addProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                            
-                        </li>
-                        <% }%>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Search 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="searchUser.jsp">User</a></li>
-                                <li><a href="searchProperty.jsp">Vacant Land</a></li>
-                                <li><a href="searchProperty.jsp">Residential Property</a></li>
-                                <li><a href="searchProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                        <% if((session.getAttribute("Manager")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Update 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">User</a></li>
-                                <li><a href="#">Vacant Land</a></li>
-                                <li><a href="#">Residential Property</a></li>
-                                <li><a href="#">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                       <% }%>
-                        <li>
-                            <a href="services.jsp">Services</a>
-                        </li>
-                        <li>
-                            <a href="contact.jsp">Contact</a>
-                        </li>
-                        <li>
-                            <a href="about.jsp">About</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <%  String currentUser="";
-                            if(session.getAttribute("Manager") != null)
-                                 currentUser=""+session.getAttribute("Manager");
-                                if(session.getAttribute("Landlord")!= null)
-                                    currentUser=""+session.getAttribute("Landlord");
-                                if(session.getAttribute("Tenant") != null)
-                                    currentUser=""+session.getAttribute("Tenant");
-                                
-                            if((session.getAttribute("Manager") != null)
-                                 || (session.getAttribute("Landlord")!= null)
-                                   || (session.getAttribute("Tenant") != null))
-                                    {  %>
-                    <li>
-                        <a type="submit" href="userDetails.jsp" ><%=currentUser%></a>
-                    </li>
-                    <li>
-                        <a type="submit" href="logOut.jsp" >Log Out</a>
-                    </li>
-                    <% }  
-                            else
-                            {
-                    %>
-                    <li>
-                    <a type="submit" href="login.jsp" >Log In </a>
-                    </li>
-                    <li>
-                    <a type="submit" href="register.jsp" >Register</a>
-                    </li>
-                    
-                    <% }  
-                            
-                    %>
-                    </ul>
-
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        
-        <header>
-            <div style="margin: 0 auto; width:1080px; height:380px">
-                <a href="#">
-                    <img  width="1080" height="380" src="images/residential-properties-in-bhubaneswar2.jpg" alt=""/>
-                </a>
-            </div>
-        </header>
-        
         <div class="container">
-            <form name="AddUser" action="Submit">
-                <h1 style="text-align: center;">Update User</h1>
+            <form>
+                <h1 style="text-align: center;">Add User</h1>
                 <hr />
                     <div class="form-group">
-                        <p>Name: </p><input class="form-control" data-val="true" required="required" type="text" name="Name" value="" />
+                        <p>Name: </p><input class="form-control" data-val="true" required="required" type="text" name="txtName" value="" />
                     </div>
                 <div class="form-group">
-            <p>Username: </p><input class="form-control" data-val="true" required="required"  type="text" name="Username" value="" />
+            <p>Username: </p><input class="form-control" data-val="true" required="required"  type="text" name="txtUsername" value="" />
            </div>
             <div class="form-group">
-            <p>Password: </p><input class="form-control" data-val="true" required="required"  type="password" name="Password" value="" />
+            <p>Password: </p><input class="form-control" data-val="true" required="required"  type="password" name="txtPassword" value="" />
             </div>
             <div class="form-group">
             <p>Account type:</p>
-            <select class="dropdown" name="AccountType">
-                <option>Manager</option>
+            <select class="form-control" name="AccountType">
+                <%    
+                         if((session.getAttribute("Landlord") == null))
+                        {%>
                 <option>Landlord</option>
+                <%}%>
                 <option>Tenant</option>
             </select>
             <br><br>
             </div>
-            <input type="submit" class="btn btn-default" value="Submit" name="addUser" />
+            <input type="submit" class="btn btn-default" value="Submit" name="btnAddUser" />
             <br><br>
         </form>
+            <%
+                if(request.getParameter("btnAddUser")!=null){
+                    boolean found=false;
+                    String Name = request.getParameter("txtName");
+                    String Username = request.getParameter("txtUsername");
+                    String Password = request.getParameter("txtPassword");
+                    String AccountType = request.getParameter("AccountType");
+                    
+                    myLib.AddUser(Name,Username,Password,AccountType);
+                    
+                    //boolean found=false;
+                    //found=myLib.SearchUser(Username,Password,AccountType);
+                   
+                    response.sendRedirect("index.jsp");
+                 
+                }
+    %>
         </div>
     </body>
+    <%@include file='footer.jsp'%>
 </html>

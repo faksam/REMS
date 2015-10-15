@@ -42,30 +42,31 @@ public class myLib {
     }
 
 
-    public static void AddUser(String user_value) {
+    public static void AddUser(String Name,String Username,String Password,String AccountType)
+    {
         try {
             Document xmlDoc = new Document();
             SAXBuilder saxBuilder = new SAXBuilder();
             xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
             
             Element rootElement = xmlDoc.getRootElement();
-            Element users = rootElement.getChild("users");
-            Element user = new Element(user_value.toLowerCase());
+            Element users = rootElement.getChild(AccountType.toLowerCase()+"s");
+            Element user = new Element(AccountType.toLowerCase());
             
             Element name = new Element("name");
             Element username = new Element("username");
             Element password = new Element("password");
-            Element account_type = new Element("account_type");
+            Element account_type = new Element("type");
 
             user.addContent(name);
             user.addContent(username);
             user.addContent(password);
             user.addContent(account_type);
-
-            name.setText("Fakunle Samuel");
-            username.setText("faksam");
-            password.setText("password");
-            account_type.setText("Admin");
+            
+            name.setText(Name);
+            username.setText(Username);
+            password.setText(Password);
+            account_type.setText(AccountType);
 
             users.addContent(user);
 
@@ -79,8 +80,9 @@ public class myLib {
         }
     }
 
-    public static boolean SearchUser(String Username,String Password,String AccountType) {
+    public static String SearchUser(String Username,String Password,String AccountType) {
         Boolean isFound = false;
+            String name ="";
         try {
             Document xmlDoc = new Document();
             SAXBuilder saxBuilder = new SAXBuilder();
@@ -88,25 +90,25 @@ public class myLib {
 
             Element rootElement = xmlDoc.getRootElement();
             Element users = rootElement.getChild(AccountType.toLowerCase()+"s");
-
+            
             //String node_name = myLib.keyin("Please Enter The Name of LandLord you need to search: ");
             
             List<Element> lstNodes = users.getChildren();
             for (int i = 0; i < lstNodes.size(); i++) {
                 Element node = (Element) lstNodes.get(i);
-                String _n_id = node.getAttributeValue("id");
+                
                 String _nodeName = node.getChildText("name");
                 String _Username = node.getChildText("username");
                 String _Password = node.getChildText("password");
-                String _AccountType = node.getChildText("account_type");
+                String _AccountType = node.getChildText("type");
                 
                 if ( _Username.equalsIgnoreCase(Username) && _Password.equalsIgnoreCase(Password) && 
                         _AccountType.equalsIgnoreCase(AccountType)) {
                     isFound = true;
-                    String name = node.getChildText("name");
+                    name = node.getChildText("name");
                     String username = node.getChildText("username");
                     String password = node.getChildText("password");
-                    String account_type = node.getChildText("account_type");
+                    String account_type = node.getChildText("type");
                     
                     System.out.println("We found a landlord with Name " + name + "; Username: "  + username);
                     
@@ -121,11 +123,12 @@ public class myLib {
             System.out.println("Finished search!");
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
-        return isFound;
+        return name;
     }
 
-    public static void UpdateUser(String user_value) {
+    public static void UpdateUser(String name,String username,String password,String account_type) {
         Boolean isFound = false;
         try {
             Document xmlDoc = new Document();
@@ -133,7 +136,7 @@ public class myLib {
             xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
 
             Element rootElement = xmlDoc.getRootElement();
-            Element users = rootElement.getChild(user_value.toLowerCase()+"s");
+            Element users = rootElement.getChild(account_type.toLowerCase()+"s");
 
             String node_name = myLib.keyin("Please Enter The Name of LandLord you need to search: ");
 
@@ -141,15 +144,16 @@ public class myLib {
             List<Element> lstNodes = users.getChildren();
             for (int i = 0; i < lstNodes.size(); i++) {
                 Element node = (Element) lstNodes.get(i);
-                String nodeName = node.getChildText("name");
+                String _username = node.getChildText("username");
+                String _password = node.getChildText("password");
                 
-                if (nodeName.equalsIgnoreCase(node_name)) {
+                if (_username.equalsIgnoreCase(username) && _password.equalsIgnoreCase(password)) {
                     isFound = true;
                     
-                    String name = myLib.keyin("Enter new name for landlord: ");
-                    String username = myLib.keyin("Enter new username for landlord: ");
-                    String password = myLib.keyin("Enter new password for landlord: ");
-                    String account_type = myLib.keyin("Enter new account_type for landlord: ");
+                    //String name = myLib.keyin("Enter new name for landlord: ");
+                    //String username = myLib.keyin("Enter new username for landlord: ");
+                    //String password = myLib.keyin("Enter new password for landlord: ");
+                    //String account_type = myLib.keyin("Enter new account_type for landlord: ");
                     //new code for update new value
                     node.getChild("name").setText(name);
                     node.getChild("username").setText(username);				
@@ -222,7 +226,9 @@ public class myLib {
     }
     
 
-    public static void AddCommercialProperty(String property_value) {
+    public static void AddCommercialProperty(String Address,String Price,String Description,
+                                             String Status,String Landlord,String Building,String ComType) 
+    {
         try {
             Document xmlDoc = new Document();
             SAXBuilder saxBuilder = new SAXBuilder();
@@ -230,9 +236,9 @@ public class myLib {
             
             Element rootElement = xmlDoc.getRootElement();
             Element properties = rootElement.getChild("properties");
-            Element commercialProperties = properties.getChild(property_value+"Properties");
+            Element commercialProperties = properties.getChild("commercialProperties");
             
-            Element commercialProperty = new Element(property_value+"Property");
+            Element commercialProperty = new Element("commercialProperty");
             
             Element address = new Element("address");
             Element price = new Element("price");
@@ -240,7 +246,7 @@ public class myLib {
             Element status = new Element("status");
             Element landlord = new Element("landlord");
             Element building = new Element("building");
-            Element comType = new Element("comType");
+            Element type = new Element("type");
 
             commercialProperty.addContent(address);
             commercialProperty.addContent(price);
@@ -248,15 +254,15 @@ public class myLib {
             commercialProperty.addContent(status);
             commercialProperty.addContent(landlord);
             commercialProperty.addContent(building);
-            commercialProperty.addContent(comType);
+            commercialProperty.addContent(type);
 
-            address.setText("Fakunle Samuel");
-            price.setText("faksam");
-            description.setText("password");
-            status.setText("Admin");
-            landlord.setText("Fakunle Samuel");
-            building.setText("faksam");
-            comType.setText("password");
+            address.setText(Address);
+            price.setText(Price);
+            description.setText(Description);
+            status.setText(Status);
+            landlord.setText(Landlord);
+            building.setText(Building);
+            type.setText("commercial");
 
             commercialProperties.addContent(commercialProperty);
 
@@ -269,7 +275,10 @@ public class myLib {
         }
     }
 
-    public static void AddResidentialProperty(String property_value) {
+    public static void AddResidentialProperty(String Address,String Price,String Description,
+                                             String Status,String Landlord,String No_rooms,String No_bath,
+                                              String LivingArea,String ResType) 
+    {
         try {
             Document xmlDoc = new Document();
             SAXBuilder saxBuilder = new SAXBuilder();
@@ -277,9 +286,9 @@ public class myLib {
             
             Element rootElement = xmlDoc.getRootElement();
             Element properties = rootElement.getChild("properties");
-            Element residentialProperties = properties.getChild(property_value+"Properties");
+            Element residentialProperties = properties.getChild("residentialProperties");
             
-            Element residentialProperty = new Element(property_value+"Property");
+            Element residentialProperty = new Element("residentialProperty");
             
             Element address = new Element("address");
             Element price = new Element("price");
@@ -289,7 +298,7 @@ public class myLib {
             Element no_rooms = new Element("no_rooms");
             Element no_bath = new Element("no_bath");
             Element livingArea = new Element("livingArea");
-            Element resType = new Element("resType");
+            Element type = new Element("type");
 
             residentialProperty.addContent(address);
             residentialProperty.addContent(price);
@@ -299,17 +308,18 @@ public class myLib {
             residentialProperty.addContent(no_rooms);
             residentialProperty.addContent(no_bath);
             residentialProperty.addContent(livingArea);
-            residentialProperty.addContent(resType);
+            residentialProperty.addContent(type);
 
-            address.setText("Fakunle Samuel");
-            price.setText("faksam");
-            description.setText("password");
-            status.setText("Admin");
-            landlord.setText("Fakunle Samuel");
-            no_rooms.setText("faksam");
-            no_bath.setText("password");
-            livingArea.setText("Admin");
-            resType.setText("Fakunle Samuel");
+            
+            address.setText(Address);
+            price.setText(Price);
+            description.setText(Description);
+            status.setText(Status);
+            landlord.setText(Landlord);
+            no_rooms.setText(No_rooms);
+            no_bath.setText(No_bath);
+            livingArea.setText(LivingArea);
+            type.setText("residential");
 
             residentialProperties.addContent(residentialProperty);
 
@@ -322,7 +332,9 @@ public class myLib {
         }
     }
 
-    public static void AddVacantLandProperty(String property_value) {
+    public static void AddVacantLandProperty(String Address,String Price,String Description,
+                                             String Status,String Landlord,String Size)
+    {
         try {
             Document xmlDoc = new Document();
             SAXBuilder saxBuilder = new SAXBuilder();
@@ -330,9 +342,9 @@ public class myLib {
             
             Element rootElement = xmlDoc.getRootElement();
             Element properties = rootElement.getChild("properties");
-            Element vacantLandProperties = properties.getChild(property_value+"Properties");
+            Element vacantLandProperties = properties.getChild("vacantLandProperties");
             
-            Element vacantLandProperty = new Element(property_value+"Property");
+            Element vacantLandProperty = new Element("vacantLandProperty");
             
             Element address = new Element("address");
             Element price = new Element("price");
@@ -340,6 +352,7 @@ public class myLib {
             Element status = new Element("status");
             Element landlord = new Element("landlord");
             Element size = new Element("size");
+            Element type = new Element("type");
 
             vacantLandProperty.addContent(address);
             vacantLandProperty.addContent(price);
@@ -347,13 +360,15 @@ public class myLib {
             vacantLandProperty.addContent(status);
             vacantLandProperty.addContent(landlord);
             vacantLandProperty.addContent(size);
-
-            address.setText("Fakunle Samuel");
-            price.setText("faksam");
-            description.setText("password");
-            status.setText("Admin");
-            landlord.setText("Fakunle Samuel");
-            size.setText("faksam");
+            vacantLandProperty.addContent(type);
+            
+            address.setText(Address);
+            price.setText(Price);
+            description.setText(Description);
+            status.setText(Status);
+            landlord.setText(Landlord);
+            size.setText(Size);
+            type.setText("vacantland");
 
             vacantLandProperties.addContent(vacantLandProperty);
 
@@ -452,15 +467,61 @@ public class myLib {
     }
     
     public static void UpdateCommercialProperty() {
-
+        
     }
 
-    public static void UpdateResidentialProperty() {
-        
+    public static void UpdateResidentialProperty(String Address,String Price,String Description,
+                                             String Status,String Landlord,String Rooms,String Bath,
+                                            String LivingArea,String ResidentialType) {
+        Boolean isFound = false;
+        try {
+            Document xmlDoc = new Document();
+            SAXBuilder saxBuilder = new SAXBuilder();
+            xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
+
+            Element rootElement = xmlDoc.getRootElement();
+            Element properties = rootElement.getChild("properties");
+            Element residentialProperties = properties.getChild("residentialProperties");
+
+            
+            List<Element> lstNodes = residentialProperties.getChildren();
+            for (int i = 0; i < lstNodes.size(); i++) {
+                Element node = (Element) lstNodes.get(i);
+                String _address = node.getChildText("address");
+                
+                if (_address.equalsIgnoreCase(Address) ) {
+                    isFound = true;
+                    
+                    node.getChild("address").setText(Address);
+                    node.getChild("price").setText(Price);				
+                    node.getChild("description").setText(Description);
+                    node.getChild("status").setText(Status);
+                    node.getChild("landlord").setText(Landlord);
+                    node.getChild("no_rooms").setText(Rooms);				
+                    node.getChild("no_bath").setText(Bath);
+                    node.getChild("livingArea").setText(LivingArea);	
+                    node.getChild("Type").setText(ResidentialType);	
+                    
+
+                    break;
+                }
+
+            }
+
+            XMLOutputter outFile = new XMLOutputter();
+            outFile.setFormat(Format.getPrettyFormat());
+            outFile.output(xmlDoc, new FileWriter(myLib.getxmlFile()));				
+            System.out.println("Updated succefully!");
+
+            System.out.println("Finished updating!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: handle exception
+        }
     }
 
     public static void UpdateVacantLandProperty() {
-        
+       
     }
 
 }

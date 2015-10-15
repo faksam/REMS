@@ -4,186 +4,197 @@
     Author     : Samuel
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="org.jdom2.Element"%>
+<%@page import="java.io.File"%>
+<%@page import="org.jdom2.input.SAXBuilder"%>
+<%@page import="org.jdom2.Document"%>
+<%@page import="BL.myLib"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <%
-            if((session.getAttribute("Manager")== null) || (session.getAttribute("Landlord")== null) )
+            if ((session.getAttribute("Manager") == null))
+                if((session.getAttribute("Landlord") == null))
+            {
                 response.sendRedirect("index.jsp");
-       %>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
-        <link href="css/full-slider.css" rel="stylesheet" type="text/css"/>
-         <script src="js/jquery.js" type="text/javascript"></script>
-         <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            }
+        %>
+        
         <title>Add Property - Real Estate Management</title>
-        
+<%@include file='navigation.jsp'%>
     </head>
+    
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.jsp">REM</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <% if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Add 
-                                <span class="caret"></span>
-                            </a>
-                            
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="addUser.jsp">User</a></li>
-                                <li><a href="addProperty.jsp">Vacant Land</a></li>
-                                <li><a href="addProperty.jsp">Residential Property</a></li>
-                                <li><a href="addProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                            
-                        </li>
-                        <% }%>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Search 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="searchUser.jsp">User</a></li>
-                                <li><a href="searchProperty.jsp">Vacant Land</a></li>
-                                <li><a href="searchProperty.jsp">Residential Property</a></li>
-                                <li><a href="searchProperty.jsp">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                        <% if((session.getAttribute("Manager")!=null)){ %>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Update 
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">User</a></li>
-                                <li><a href="#">Vacant Land</a></li>
-                                <li><a href="#">Residential Property</a></li>
-                                <li><a href="#">Commercial Property</a></li>
-                            </ul>
-                        </li>
-                       <% }%>
-                        <li>
-                            <a href="services.jsp">Services</a>
-                        </li>
-                        <li>
-                            <a href="contact.jsp">Contact</a>
-                        </li>
-                        <li>
-                            <a href="about.jsp">About</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <%  String currentUser="";
-                            if(session.getAttribute("Manager") != null)
-                                 currentUser=""+session.getAttribute("Manager");
-                                if(session.getAttribute("Landlord")!= null)
-                                    currentUser=""+session.getAttribute("Landlord");
-                                if(session.getAttribute("Tenant") != null)
-                                    currentUser=""+session.getAttribute("Tenant");
-                                
-                            if((session.getAttribute("Manager") != null)
-                                 || (session.getAttribute("Landlord")!= null)
-                                   || (session.getAttribute("Tenant") != null))
-                                    {  %>
-                    <li>
-                        <a type="submit" href="userDetails.jsp" ><%=currentUser%></a>
-                    </li>
-                    <li>
-                        <a type="submit" href="logOut.jsp" >Log Out</a>
-                    </li>
-                    <% }  
-                            else
-                            {
-                    %>
-                    <li>
-                    <a type="submit" href="login.jsp" >Log In </a>
-                    </li>
-                    <li>
-                    <a type="submit" href="register.jsp" >Register</a>
-                    </li>
-                    
-                    <% }  
-                            
-                    %>
-                    </ul>
 
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <header>
-            <div style="margin: 0 auto; width:1080px; height:380px">
-                <a href="#">
-                    <img  width="1080" height="380" src="images/residential-properties-in-bhubaneswar2.jpg" alt=""/>
-                </a>
-            </div>
-        </header>
         <div class="container">
-        
-        <form name="AddUser" action="Submit">
-            <p>Property Type: </p>
-            <select id="propType" name="PropertyType">
-                <option>Vacant Land</option>
-                <option>Commercial Property</option>
-                <option>Residential Property</option>
-            </select>
-            
-            <script>
-                document.getElementById("propType").addEventListener("change", displayDate);
+            <div class="form-group">
+                <form>
+                    <h1>Add Property</h1>
+                    <hr />
 
-                function displayDate() {
-                    document.getElementById("prop").style.visibility = "visible";
-                    document.getElementById("prop").style.display = "block";
-                    document.getElementById("res").style.visibility = "visible";
-                    document.getElementById("com").style.visibility = "visible";
-                    document.getElementById("vac").style.visibility = "visible";
+                    <p>Property Type: </p>
+                    <select id="propType" class="form-control" required="required" name="PropertyType">
+                        <option value=""></option>
+                        <option value="Vacant Land">Vacant Land</option>
+                        <option value="Commercial Property">Commercial Property</option>
+                        <option value="Residential Property">Residential Property</option>
+                    </select>
+
+                    <script>
+
+                        document.getElementById("propType").addEventListener("change", display);
+
+                        function display() {
+                            var v = document.getElementById("propType");
+                            var propertyType = v.options[v.selectedIndex].text;
+                            document.getElementById("prop").style.visibility = "visible";
+                            document.getElementById("prop").style.display = "block";
+                            if (propertyType == 'Vacant Land')
+                            {
+                                document.getElementById("vac").style.visibility = "visible";
+                                document.getElementById("vac").style.display = "block";
+                                document.getElementById("com").style.visibility = "hidden";
+                                document.getElementById("com").style.display = "none";
+                                document.getElementById("res").style.visibility = "hidden";
+                                document.getElementById("res").style.display = "none";
+                            }
+                            if (propertyType == 'Commercial Property')
+                            {
+                                document.getElementById("com").style.visibility = "visible";
+                                document.getElementById("com").style.display = "block";
+                                document.getElementById("vac").style.visibility = "hidden";
+                                document.getElementById("vac").style.display = "none";
+                                document.getElementById("res").style.visibility = "hidden";
+                                document.getElementById("res").style.display = "none";
+                            }
+                            if (propertyType == 'Residential Property')
+                            {
+                                document.getElementById("res").style.visibility = "visible";
+                                document.getElementById("res").style.display = "block";
+                                document.getElementById("com").style.visibility = "hidden";
+                                document.getElementById("com").style.display = "none";
+                                document.getElementById("vac").style.visibility = "hidden";
+                                document.getElementById("vac").style.display = "none";
+                            }
+
+                            document.getElementById("addUser").style.visibility = "visible";
+                            document.getElementById("addUser").style.display = "block";
+                        }
+                    </script>
+                    <div id="prop" style="visibility: hidden; display: none;">
+                        <p>Address: </p><input class="form-control" type="text" name="txtAddress" value="" />
+                        <p>Price: </p><input class="form-control" type="text" name="txtPrice" value="" />
+                        <p>Description: </p><input class="form-control" type="password" name="txtDescription" value="" />
+                        <p>Status: </p><input class="form-control" type="text" name="txtStatus" value="" />
+                        <%    
+                         if((session.getAttribute("Landlord") == null))
+                        {
+                        try {
+                                Document xmlDoc = new Document();
+                                SAXBuilder saxBuilder = new SAXBuilder();
+                                xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
+
+                                ArrayList listLandlords = new ArrayList();
+                                Element rootElement = xmlDoc.getRootElement();
+                                Element landlords = rootElement.getChild("landlords");
+                                
+                                List<Element> lstNodes = landlords.getChildren();
+                                for (int i = 0; i < lstNodes.size(); i++) {
+                                    Element node = (Element) lstNodes.get(i);
+
+                                    String Landlord = node.getChildText("name");
+                                    listLandlords.add("" + Landlord);
+                                }
+                                
+                                
+                        %>
+                        <p>Landlord: </p>
+                        <select class="form-control" name="txtLandlord">
+                        
+                        <%                            for (int i = 0; i < listLandlords.size(); i++) {
+                        %>
+                        <option><%= listLandlords.get(i).toString()%></option>
+                        <%
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }else
+                         {
+                             %>
+                        <p>Landlord: </p>
+                        <select class="form-control" name="txtLandlord">
+                            <option><%=currentUser%></option>
+                        <%
+                         }
+                        %>
+
+                        </select>
+                    </div>
+
+                    <div id="res" style="visibility: hidden; display: none;">
+                        <p>Rooms: </p><input class="form-control" type="text" name="txtRooms" value="" />
+                        <p>Bath: </p><input class="form-control" type="text" name="txtBath" value="" />
+                        <p>Living Area: </p><input class="form-control" type="password" name="txtLivingArea" value="" />
+                        <p>Residential Type: </p><input class="form-control" type="password" name="txtResidential" value="" />
+                    </div>
+
+                    <div id="com" style="visibility: hidden; display: none;"> 
+                        <p>Building: </p><input class="form-control" type="text" name="txtBuilding" value="" />
+                        <p>Commercial Type: </p><input class="form-control" type="password" name="txtCommercial" value="" />
+                    </div>
+
+                    <div id="vac" style="visibility: hidden; display: none;">
+                        <p>Size:</p><input class="form-control" type="password" name="txtSize" value="" />
+                    </div>
+
+                    <br><br>
+                    <div id="addUser" style="visibility: hidden; display: none;">
+                        <input  class=" btn btn-default" type="submit" value="Save" name="btnAddProperty" />
+                    </div>
+                </form>
+            </div>
+            <%
+                if (request.getParameter("btnAddProperty") != null) {
+                    boolean found = false;
+                    String PropertyType = request.getParameter("PropertyType");
+                    String Address = request.getParameter("txtAddress");
+                    String Price = request.getParameter("txtPrice");
+                    String Description = request.getParameter("txtDescription");
+                    String Status = request.getParameter("txtStatus");
+                    String Landlord = request.getParameter("txtLandlord");
+                    String Rooms = request.getParameter("txtRooms");
+                    String Bath = request.getParameter("txtBath");
+                    String LivingArea = request.getParameter("txtLivingArea");
+                    String ResidentialType = request.getParameter("txtResidential");
+                    String Building = request.getParameter("txtBuilding");
+                    String CommercialType = request.getParameter("txtCommercial");
+                    String Size = request.getParameter("txtSize");
+
+                    if (PropertyType.equals("Vacant Land")) {
+                        myLib.AddVacantLandProperty(Address, Price, Description,
+                                Status, Landlord, Size);
+                    }
+
+                    if (PropertyType.equals("Commercial Property")) {
+                        myLib.AddCommercialProperty(Address, Price, Description,
+                                Status, Landlord, Building, CommercialType);
+                    }
+
+                    if (PropertyType.equals("Residential Property")) {
+                        myLib.AddResidentialProperty(Address, Price, Description,
+                                Status, Landlord, Rooms, Bath,
+                                LivingArea, ResidentialType);
+                    }
+
+                    response.sendRedirect("searchProperty.jsp");
+
                 }
-            </script>
-            <div id="prop" style="visibility: hidden; display: none;">
-                <p>Address: </p><input type="text" name="Name" value="" />
-                <p>Price: </p><input type="text" name="Username" value="" />
-                <p>Description: </p><input type="password" name="Password" value="" />
-                <p>Status: </p><input type="text" name="Name" value="" />
-                <p>Landlord: </p><input type="text" name="Username" value="" />
-            </div>
-            
-            <div id="res" style="visibility: hidden; display: none;">
-                <p>Rooms: </p><input type="text" name="Name" value="" />
-                <p>Bath: </p><input type="text" name="Username" value="" />
-                <p>Living Area: </p><input type="password" name="Password" value="" />
-                <p>Residential Type: </p><input type="password" name="Password" value="" />
-            </div>
-            
-            <div id="com" style="visibility: hidden; display: none;"> 
-                <p>Building: </p><input type="text" name="Username" value="" />
-                <p>Commercial Type: </p><input type="password" name="Password" value="" />
-            </div>
-            
-            <div id="vac" style="visibility: hidden; display: none;">
-                <p>Size:</p><input type="password" name="Password" value="" />
-            </div>
-            
-            <br><br>
-            <input type="submit" value="Register" name="addUser" />
-        </form>
+            %>
         </div>
     </body>
+    <%@include file='footer.jsp'%>
 </html>

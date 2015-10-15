@@ -58,12 +58,11 @@ public final class homePage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    <title>Real Estate Management</title>\n");
       out.write("\n");
-      out.write("    <!-- Bootstrap Core CSS -->\n");
-      out.write("    <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n");
-      out.write("\n");
+      out.write("        <link href=\"css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
       out.write("        <link href=\"css/myStyle.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
-      out.write("    <!-- Custom CSS -->\n");
-      out.write("    <link href=\"css/full-slider.css\" rel=\"stylesheet\">\n");
+      out.write("        <link href=\"css/full-slider.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
+      out.write("         <script src=\"js/jquery.js\" type=\"text/javascript\"></script>\n");
+      out.write("         <script src=\"js/bootstrap.min.js\" type=\"text/javascript\"></script>\n");
       out.write("\n");
       out.write("    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->\n");
       out.write("    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->\n");
@@ -83,52 +82,128 @@ public final class homePage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    <!-- Navigation -->\n");
       out.write("    <nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n");
-      out.write("        <div class=\"container\">\n");
-      out.write("            <!-- Brand and toggle get grouped for better mobile display -->\n");
-      out.write("            <div class=\"navbar-header\">\n");
-      out.write("                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n");
-      out.write("                    <span class=\"sr-only\">Toggle navigation</span>\n");
-      out.write("                    <span class=\"icon-bar\"></span>\n");
-      out.write("                    <span class=\"icon-bar\"></span>\n");
-      out.write("                    <span class=\"icon-bar\"></span>\n");
-      out.write("                </button>\n");
-      out.write("                <a class=\"navbar-brand\" href=\"index.jsp\">REM</a>\n");
-      out.write("            </div>\n");
-      out.write("            <!-- Collect the nav links, forms, and other content for toggling -->\n");
-      out.write("            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
-      out.write("                <ul class=\"nav navbar-nav\">\n");
-      out.write("                    <li>\n");
-      out.write("                        <a href=\"about.jsp\">About</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    <li>\n");
-      out.write("                        <a href=\"services.jsp\">Services</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    <li>\n");
-      out.write("                        <a href=\"contact.jsp\">Add</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    <li>\n");
-      out.write("                        <a href=\"contact.jsp\">Contact</a>\n");
-      out.write("                    </li>\n");
-      out.write("                    <li>\n");
-      out.write("                        <a href=\"contact.jsp\">Contact</a>\n");
-      out.write("                    </li>\n");
-      out.write("                </ul> \n");
+      out.write("            <div class=\"container\">\n");
+      out.write("                <!-- Brand and toggle get grouped for better mobile display -->\n");
+      out.write("                <div class=\"navbar-header\">\n");
+      out.write("                    <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n");
+      out.write("                        <span class=\"sr-only\">Toggle navigation</span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                        <span class=\"icon-bar\"></span>\n");
+      out.write("                    </button>\n");
+      out.write("                    <a class=\"navbar-brand\" href=\"index.jsp\">REM</a>\n");
+      out.write("                </div>\n");
+      out.write("                <!-- Collect the nav links, forms, and other content for toggling -->\n");
+      out.write("                <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n");
+      out.write("                    <ul class=\"nav navbar-nav\">\n");
+      out.write("                        ");
+ if((session.getAttribute("Manager")!=null) || (session.getAttribute("Landlord")!=null)){ 
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Add \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            \n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                <li><a href=\"addUser.jsp\">User</a></li>\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Vacant Land</a></li>\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Residential Property</a></li>\n");
+      out.write("                                <li><a href=\"addProperty.jsp\">Commercial Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                            \n");
+      out.write("                        </li>\n");
+      out.write("                        ");
+ }
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Search \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                <li><a href=\"searchUser.jsp\">User</a></li>\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Vacant Land</a></li>\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Residential Property</a></li>\n");
+      out.write("                                <li><a href=\"searchProperty.jsp\">Commercial Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                        </li>\n");
+      out.write("                        ");
+ if((session.getAttribute("Manager")!=null)){ 
+      out.write("\n");
+      out.write("                        <li class=\"dropdown\">\n");
+      out.write("                            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n");
+      out.write("                                Update \n");
+      out.write("                                <span class=\"caret\"></span>\n");
+      out.write("                            </a>\n");
+      out.write("                            <ul class=\"dropdown-menu\" role=\"menu\">\n");
+      out.write("                                <li><a href=\"#\">User</a></li>\n");
+      out.write("                                <li><a href=\"#\">Vacant Land</a></li>\n");
+      out.write("                                <li><a href=\"#\">Residential Property</a></li>\n");
+      out.write("                                <li><a href=\"#\">Commercial Property</a></li>\n");
+      out.write("                            </ul>\n");
+      out.write("                        </li>\n");
+      out.write("                       ");
+ }
+      out.write("\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"services.jsp\">Services</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"contact.jsp\">Contact</a>\n");
+      out.write("                        </li>\n");
+      out.write("                        <li>\n");
+      out.write("                            <a href=\"about.jsp\">About</a>\n");
+      out.write("                        </li>\n");
+      out.write("                    </ul>\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-right\">\n");
+      out.write("                        ");
+  String currentUser="";
+                            if(session.getAttribute("Manager") != null)
+                                 currentUser=""+session.getAttribute("Manager");
+                                if(session.getAttribute("Landlord")!= null)
+                                    currentUser=""+session.getAttribute("Landlord");
+                                if(session.getAttribute("Tenant") != null)
+                                    currentUser=""+session.getAttribute("Tenant");
+                                
+                            if((session.getAttribute("Manager") != null)
+                                 || (session.getAttribute("Landlord")!= null)
+                                   || (session.getAttribute("Tenant") != null))
+                                    {  
+      out.write("\n");
       out.write("                    <li>\n");
-      out.write("                    <a type=\"submit\" href=\"userDetails.jsp\" >");
-      out.print(session.getAttribute("Login"));
-      out.write(" </a>\n");
+      out.write("                        <a type=\"submit\" href=\"userDetails.jsp\" >");
+      out.print(currentUser);
+      out.write("</a>\n");
       out.write("                    </li>\n");
       out.write("                    <li>\n");
-      out.write("                    <a type=\"submit\" href=\"logOut.jsp\" >Log Out</a>\n");
+      out.write("                        <a type=\"submit\" href=\"logOut.jsp\" >Log Out</a>\n");
       out.write("                    </li>\n");
-      out.write("                </ul>\n");
-      out.write("                \n");
+      out.write("                    ");
+ }  
+                            else
+                            {
+                    
+      out.write("\n");
+      out.write("                    <li>\n");
+      out.write("                    <a type=\"submit\" href=\"login.jsp\" >Log In </a>\n");
+      out.write("                    </li>\n");
+      out.write("                    <li>\n");
+      out.write("                    <a type=\"submit\" href=\"register.jsp\" >Register</a>\n");
+      out.write("                    </li>\n");
+      out.write("                    \n");
+      out.write("                    ");
+ }  
+                            
+                    
+      out.write("\n");
+      out.write("                    </ul>\n");
+      out.write("\n");
+      out.write("                </div>\n");
+      out.write("                <!-- /.navbar-collapse -->\n");
       out.write("            </div>\n");
-      out.write("            <!-- /.navbar-collapse -->\n");
-      out.write("        </div>\n");
-      out.write("        <!-- /.container -->\n");
-      out.write("    </nav>\n");
+      out.write("            <!-- /.container -->\n");
+      out.write("        </nav>\n");
       out.write("\n");
       out.write("    <!-- Full Page Image Background Carousel Header -->\n");
       out.write("    <header id=\"myCarousel\" class=\"carousel slide\">\n");
