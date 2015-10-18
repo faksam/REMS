@@ -12,8 +12,5 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Life</h1>
-        <%@include file='navigation.jsp'%>
-        <h1>Life</h1>
     </body>
 </html>

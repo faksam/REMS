@@ -33,55 +33,51 @@ and open the template in the editor.
       <type>Landlord</type>
     </landlord>
     <landlord>
-      <name>faksam</name>
-      <username>life</username>
-      <password>life</password>
+      <name>Chinedu Agwu</name>
+      <username>agwu</username>
+      <password>123</password>
       <type>Landlord</type>
     </landlord>
     <landlord>
-      <name>faksam</name>
-      <username>life</username>
-      <password>life</password>
+      <name>Deen Sodiq</name>
+      <username>deen12</username>
+      <password>123</password>
       <type>Landlord</type>
     </landlord>
   </landlords>
-  <tenants>
-    <tenant>
-      <name>Mr Tenant</name>
-      <username>first Tenant</username>
-      <password>123</password>
-      <type>Tenant</type>
-    </tenant>
-    <tenant>
-      <name>faksam</name>
-      <username>life my</username>
-      <password>life</password>
-      <type>Tenant</type>
-    </tenant>
-  </tenants>
+  <tenants />
   <properties>
     <commercialProperties>
       <commercialProperty>
-        <address>FPT University</address>
-        <price>admin</price>
-        <description>admin</description>
+        <address>Hao Lac</address>
+        <price>13000</price>
+        <description>Big Office space</description>
         <status>Available</status>
-        <landlord>Oga John</landlord>
-        <building>Building</building>
+        <landlord>Fakunle Samuel</landlord>
+        <building>Commercial</building>
+        <type>commercial</type>
+      </commercialProperty>
+      <commercialProperty>
+        <address>Hoa Lac</address>
+        <price>125</price>
+        <description>Commercial Property</description>
+        <status>Available</status>
+        <landlord />
+        <building>Commercial</building>
         <type>commercial</type>
       </commercialProperty>
     </commercialProperties>
     <residentialProperties />
-    <vacantLandProperties>
-      <vacantLandProperty>
-        <address>life</address>
-        <price>admin</price>
+    <vacantlandProperties>
+      <vacantlandProperty>
+        <address>FPT University</address>
+        <price>1200</price>
         <description>admin</description>
         <status>Available</status>
         <landlord>Oga John</landlord>
-        <size>2345678</size>
+        <size />
         <type>vacantland</type>
-      </vacantLandProperty>
-    </vacantLandProperties>
+      </vacantlandProperty>
+    </vacantlandProperties>
   </properties>
 </REMS>

@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class tester_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class logOut_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -51,27 +51,12 @@ public final class tester_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <input type=\"file\" onchange=\"previewFile()\"><br>\n");
-      out.write("<img src=\"\" height=\"200\" alt=\"Image preview...\">\n");
-      out.write("        <script>\n");
-      out.write("   function previewFile(){\n");
-      out.write("       var preview = document.querySelector('img'); //selects the query named img\n");
-      out.write("       var file    = document.querySelector('input[type=file]').files[0]; //sames as here\n");
-      out.write("       var reader  = new FileReader();\n");
+      out.write("        ");
+
+            session.invalidate();
+            response.sendRedirect("login.jsp");
+        
       out.write("\n");
-      out.write("       reader.onloadend = function () {\n");
-      out.write("           preview.src = reader.result;\n");
-      out.write("       }\n");
-      out.write("\n");
-      out.write("       if (file) {\n");
-      out.write("           reader.readAsDataURL(file); //reads the data as a URL\n");
-      out.write("       } else {\n");
-      out.write("           preview.src = \"\";\n");
-      out.write("       }\n");
-      out.write("  }\n");
-      out.write("\n");
-      out.write("  previewFile();  //calls the function named previewFile()\n");
-      out.write("  </script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

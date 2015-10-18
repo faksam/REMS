@@ -115,15 +115,19 @@
                                         String Type = node.getChildText("type");
 
                             %>
-                            <tr>
-                                <td><%=Name%></td>
-                                <td><%=Username%></td>
-                                <td><%=Type%></td>
-                                <td>
-                                     <a href="updateUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">Update</a> | 
-                                     <a href="deleteUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">Delete</a>
-                                 </td>
-                            </tr>
+        <tr>
+            <td><%=Name%></td>
+            <td><%=Username%></td>
+            <td><%=Type%></td>
+             <td>
+                <a onclick='return confirm("You want to Update this User?")' href="updateUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">
+                    Update
+                </a> | 
+                <a onclick='return confirm("Do you want to Delete this User?")' href="deleteUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">
+                    Delete
+                </a>
+            </td>
+        </tr>
                             <%
 
                                     }
@@ -141,9 +145,13 @@
                                 <td><%=Username%></td>
                                 <td><%=Type%></td>
                                 <td>
-                                     <a href="updateUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">Update</a> | 
-                                     <a href="deleteUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">Delete</a>
-                                 </td>
+                                    <a onclick='return confirm("You want to Update this User?")' href="updateUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">
+                                        Update
+                                    </a> | 
+                                    <a onclick='return confirm("Do you want to Delete this User?")' href="deleteUser.jsp?Name=<%=Name%>&Type=<%=Type%>&Username=<%=Username%>">
+                                        Delete
+                                    </a>
+                                </td>
                             </tr>
                             <%
 

@@ -14,6 +14,10 @@ form{
     width:450px;
 }
 
+td{
+ font-weight: bold;
+}
+
 .filterable {
     margin-top: 15px;
 }

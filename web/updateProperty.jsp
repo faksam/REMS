@@ -65,7 +65,7 @@
             Type = node.getChildText("type");
             if (Address.equalsIgnoreCase(_Address)) 
             {
-                
+                node.detach();
                 break;
             }}
             XMLOutputter outFile = new XMLOutputter();
@@ -75,17 +75,19 @@
         %>
         <div class="form-group">
         <form  method="post">
-            <h1>Add Property</h1>
+            <h1>Update Property</h1>
             <hr />
             
-            <p>Select New Property Type: </p>
-            <select id="propType" class="form-control" name="PropertyType">
-                <option value=<%=_PropType%>></option>
+            <br><br>
+                        <p>Property Type: </p>
+            <select required="required" id="propType" class="form-control" name="PropertyType">
+                <option value=<%=_PropType%>><%=_PropType%></option>
                 <option value="Vacant Land">Vacant Land</option>
                 <option value="Commercial Property">Commercial Property</option>
                 <option value="Residential Property">Residential Property</option>
             </select>
-            <p>Address: </p><input class="form-control" type="text" name="txtAddress" value="<%=Address%>" />
+            <br><br>
+                        <p>Address: </p><input class="form-control" type="text" name="txtAddress" value="<%=Address%>" />
             <script>
                 
                 document.getElementById("propType").addEventListener("change", display);
@@ -95,7 +97,7 @@
                 var propertyType = v.options[v.selectedIndex].text;
                     document.getElementById("prop").style.visibility = "visible";
                     document.getElementById("prop").style.display = "block";
-                    if(propertyType=='Vacant Land')
+                    if(propertyType=='vacantland')
                     {
                         document.getElementById("vac").style.visibility = "visible";
                         document.getElementById("vac").style.display = "block";
@@ -104,7 +106,7 @@
                         document.getElementById("res").style.visibility = "hidden";
                         document.getElementById("res").style.display = "none";
                     }
-                    if(propertyType=='Commercial Property')
+                    if(propertyType=='commercial')
                     {
                         document.getElementById("com").style.visibility = "visible";
                         document.getElementById("com").style.display = "block";
@@ -113,7 +115,7 @@
                         document.getElementById("res").style.visibility = "hidden";
                         document.getElementById("res").style.display = "none";
                     }
-                    if(propertyType=='Residential Property')
+                    if(propertyType=='residential')
                     {
                         document.getElementById("res").style.visibility = "visible";
                         document.getElementById("res").style.display = "block";
@@ -128,26 +130,42 @@
                 }
             </script>
             <div id="prop" style="visibility: hidden; display: none;">
-                <p>Price: </p><input class="form-control" type="text" name="txtPrice" value="<%=Price%>" />
-                <p>Description: </p><input class="form-control" type="password" name="txtDescription" value="<%=Description%>" />
-                <p>Status: </p><input class="form-control" type="text" name="txtStatus" value="<%=Status%>" />
+                <br><br>
+                        <p>Price(USD): </p><input class="form-control" type="number" min="1" name="txtPrice" value="<%=Price%>" />
+                <br><br>
+                        <p>Description: </p><input class="form-control" type="text" name="txtDescription" value="<%=Description%>" />
+                <br><br>
+                        <p>Status: </p>
+                        <select class="form-control" required="required" name="txtStatus">
+                        <option value="<%=Status%>"><%=Status%></option>
+                        <option value="Available">Available</option>
+                        <option value="Sold">Sold</option>
+                        <option value="Leased">Leased</option>
+                        </select><br><br>
                 <p>Landlord: </p><input class="form-control" type="text" name="txtLandlord" value="<%=Landlord%>" />
             </div>
             
             <div id="res" style="visibility: hidden; display: none;">
-                <p>Rooms: </p><input class="form-control" type="text" name="txtRooms" value="" />
-                <p>Bath: </p><input class="form-control" type="text" name="txtBath" value="" />
-                <p>Living Area: </p><input class="form-control" type="password" name="txtLivingArea" value="" />
-                <p>Residential Type: </p><input class="form-control" type="password" name="txtResidential" value="" />
+                <br><br>
+                        <p>No of Rooms: </p><input class="form-control" type="number" min="1" name="txtRooms" value="" />
+                <br><br>
+                        <p>No of Bath: </p><input class="form-control" type="number" min="1" name="txtBath" value="" />
+                <br><br>
+                        <p>Living Area(sqr/meter): </p><input class="form-control" type="number" min="1" name="txtLivingArea" value="" />
+                <br><br>
+                        <p>Residential Type: </p><input class="form-control" type="text" name="txtResidential" value="" />
             </div>
             
             <div id="com" style="visibility: hidden; display: none;"> 
-                <p>Building: </p><input class="form-control" type="text" name="txtBuilding" value="" />
-                <p>Commercial Type: </p><input class="form-control" type="password" name="txtCommercial" value="" />
+                <br><br>
+                        <p>Building: </p><input class="form-control" type="text" name="txtBuilding" value="" />
+                <br><br>
+                        <p>Commercial Type: </p><input class="form-control" type="text" name="txtCommercial" value="" />
             </div>
             
             <div id="vac" style="visibility: hidden; display: none;">
-                <p>Size:</p><input class="form-control" type="password" name="txtSize" value="" />
+                <br><br>
+                        <p>Size(sqr/meter):</p><input class="form-control" type="number" min="1" name="txtSize" value="" />
             </div>
             
             <br><br>
@@ -157,7 +175,6 @@
             <%
                 if(request.getParameter("btnAddProperty")!=null){
                     boolean found=false;
-                    node.detach();
                     String PropertyType = request.getParameter("PropertyType");
                     Address = request.getParameter("txtAddress");
                     Price = request.getParameter("txtPrice");

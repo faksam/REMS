@@ -123,12 +123,21 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                ");
  if((session.getAttribute("Manager")!=null)){ 
       out.write("\n");
-      out.write("                                <li><a href=\"addUser.jsp\">User</a></li>\n");
+      out.write("                                <li><a href=\"addUser.jsp\">Landlord</a></li>\n");
       out.write("                                    ");
  }
       out.write("\n");
+      out.write("                                ");
+ if ((session.getAttribute("Landlord") != null)) { 
+      out.write("\n");
+      out.write("                                \n");
+      out.write("                                ");
+ }
+      out.write("\n");
+      out.write("                                <li><a href=\"addUser.jsp\">Tenant</a></li>\n");
       out.write("                                <li><a href=\"addProperty.jsp\">Property</a></li>\n");
       out.write("                            </ul>\n");
+      out.write("                                \n");
       out.write("                            \n");
       out.write("                        </li>\n");
       out.write("                        ");
@@ -149,6 +158,7 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
  }
       out.write("\n");
       out.write("                                <li><a href=\"searchProperty.jsp\">Property</a></li>\n");
+      out.write("                                \n");
       out.write("                            </ul>\n");
       out.write("                        </li>\n");
       out.write("                        ");
@@ -241,13 +251,13 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <hr />\n");
       out.write("\n");
       out.write("                    <p>Property Type: </p>\n");
-      out.write("                    <select id=\"propType\" class=\"form-control\" name=\"PropertyType\">\n");
+      out.write("                    <select id=\"propType\" class=\"form-control\" required=\"required\" name=\"PropertyType\">\n");
       out.write("                        <option value=\"\"></option>\n");
       out.write("                        <option value=\"Vacant Land\">Vacant Land</option>\n");
       out.write("                        <option value=\"Commercial Property\">Commercial Property</option>\n");
       out.write("                        <option value=\"Residential Property\">Residential Property</option>\n");
       out.write("                    </select>\n");
-      out.write("\n");
+      out.write("                    <br><br>\n");
       out.write("                    <script>\n");
       out.write("\n");
       out.write("                        document.getElementById(\"propType\").addEventListener(\"change\", display);\n");
@@ -290,10 +300,20 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        }\n");
       out.write("                    </script>\n");
       out.write("                    <div id=\"prop\" style=\"visibility: hidden; display: none;\">\n");
-      out.write("                        <p>Address: </p><input class=\"form-control\" type=\"text\" name=\"txtAddress\" value=\"\" />\n");
-      out.write("                        <p>Price: </p><input class=\"form-control\" type=\"text\" name=\"txtPrice\" value=\"\" />\n");
-      out.write("                        <p>Description: </p><input class=\"form-control\" type=\"password\" name=\"txtDescription\" value=\"\" />\n");
-      out.write("                        <p>Status: </p><input class=\"form-control\" type=\"text\" name=\"txtStatus\" value=\"\" />\n");
+      out.write("                        <p>Address: </p><input required=\"required\" class=\"form-control\" type=\"text\" name=\"txtAddress\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Price(USD): </p><input  required=\"required\" class=\"form-control\" type=\"number\" min=\"1\" name=\"txtPrice\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Description: </p><input required=\"required\" class=\"form-control\" type=\"text\" name=\"txtDescription\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Status: </p>\n");
+      out.write("                        <select class=\"form-control\" required=\"required\" name=\"txtStatus\">\n");
+      out.write("                        <option value=\"\"></option>\n");
+      out.write("                        <option value=\"Available\">Available</option>\n");
+      out.write("                        <option value=\"Sold\">Sold</option>\n");
+      out.write("                        <option value=\"Leased\">Leased</option>\n");
+      out.write("                        </select><br><br>\n");
+      out.write("                        \n");
       out.write("                        ");
     
                          if((session.getAttribute("Landlord") == null))
@@ -319,7 +339,7 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
                         
       out.write("\n");
       out.write("                        <p>Landlord: </p>\n");
-      out.write("                        <select class=\"form-control\" name=\"txtLandlord\">\n");
+      out.write("                        <select  required=\"required\" class=\"form-control\" name=\"txtLandlord\">\n");
       out.write("                        \n");
       out.write("                        ");
                             for (int i = 0; i < listLandlords.size(); i++) {
@@ -339,7 +359,6 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
                              
       out.write("\n");
       out.write("                        <p>Landlord: </p>\n");
-      out.write("                        <select class=\"form-control\" name=\"txtLandlord\">\n");
       out.write("                            <option>");
       out.print(currentUser);
       out.write("</option>\n");
@@ -350,22 +369,31 @@ public final class addProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("                        </select>\n");
+      out.write("                        <br><br>\n");
+      out.write("                        \n");
       out.write("                    </div>\n");
       out.write("\n");
       out.write("                    <div id=\"res\" style=\"visibility: hidden; display: none;\">\n");
-      out.write("                        <p>Rooms: </p><input class=\"form-control\" type=\"text\" name=\"txtRooms\" value=\"\" />\n");
-      out.write("                        <p>Bath: </p><input class=\"form-control\" type=\"text\" name=\"txtBath\" value=\"\" />\n");
-      out.write("                        <p>Living Area: </p><input class=\"form-control\" type=\"password\" name=\"txtLivingArea\" value=\"\" />\n");
-      out.write("                        <p>Residential Type: </p><input class=\"form-control\" type=\"password\" name=\"txtResidential\" value=\"\" />\n");
+      out.write("                        <p>No of Rooms: </p><input required=\"required\" class=\"form-control\" type=\"number\" min=\"1\" name=\"txtRooms\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>No of Bath: </p><input required=\"required\" class=\"form-control\" type=\"number\" min=\"1\" name=\"txtBath\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Living Area(sqr/meter): </p><input required=\"required\" class=\"form-control\" type=\"number\" min=\"1\" name=\"txtLivingArea\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Residential Type: </p><input required=\"required\" class=\"form-control\" type=\"text\" name=\"txtResidential\" value=\"residential\" />\n");
       out.write("                    </div>\n");
       out.write("\n");
       out.write("                    <div id=\"com\" style=\"visibility: hidden; display: none;\"> \n");
-      out.write("                        <p>Building: </p><input class=\"form-control\" type=\"text\" name=\"txtBuilding\" value=\"\" />\n");
-      out.write("                        <p>Commercial Type: </p><input class=\"form-control\" type=\"password\" name=\"txtCommercial\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Building: </p><input required=\"required\" class=\"form-control\" type=\"text\" name=\"txtBuilding\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Commercial Type: </p><input required=\"required\" class=\"form-control\" type=\"text\" name=\"txtCommercial\" value=\"commercial\" />\n");
       out.write("                    </div>\n");
       out.write("\n");
       out.write("                    <div id=\"vac\" style=\"visibility: hidden; display: none;\">\n");
-      out.write("                        <p>Size:</p><input class=\"form-control\" type=\"password\" name=\"txtSize\" value=\"\" />\n");
+      out.write("                        <br><br>\n");
+      out.write("                        <p>Size(sqr/meter):</p><input required=\"required\" class=\"form-control\" type=\"number\" min=\"10\" name=\"txtSize\" value=\"\" />\n");
+      out.write("                        \n");
       out.write("                    </div>\n");
       out.write("\n");
       out.write("                    <br><br>\n");

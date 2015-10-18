@@ -76,7 +76,6 @@ public final class addUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"js/jquery.js\" type=\"text/javascript\"></script>\n");
       out.write("        <script src=\"js/bootstrap.min.js\" type=\"text/javascript\"></script>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Add Property - Real Estate Management</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("\n");
@@ -243,7 +242,7 @@ public final class addUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\n");
       out.write("            <div class=\"form-group\">\n");
       out.write("            <p>Account type:</p>\n");
-      out.write("            <select class=\"form-control\" name=\"AccountType\">\n");
+      out.write("            <select required=\"required\" class=\"form-control\" name=\"AccountType\">\n");
       out.write("                ");
     
                          if((session.getAttribute("Landlord") == null))

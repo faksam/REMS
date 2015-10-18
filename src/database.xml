@@ -33,51 +33,55 @@ and open the template in the editor.
       <type>Landlord</type>
     </landlord>
     <landlord>
-      <name>Chinedu Agwu</name>
-      <username>agwu</username>
-      <password>123</password>
+      <name>faksam</name>
+      <username>My life</username>
+      <password>life</password>
       <type>Landlord</type>
     </landlord>
     <landlord>
-      <name>Deen Sodiq</name>
-      <username>deen12</username>
-      <password>123</password>
+      <name>faksam</name>
+      <username>The life</username>
+      <password>life</password>
       <type>Landlord</type>
     </landlord>
   </landlords>
-  <tenants />
+  <tenants>
+    <tenant>
+      <name>Mr Tenant</name>
+      <username>first Tenant</username>
+      <password>123</password>
+      <type>Tenant</type>
+    </tenant>
+    <tenant>
+      <name>faksam</name>
+      <username>life my</username>
+      <password>life</password>
+      <type>Tenant</type>
+    </tenant>
+  </tenants>
   <properties>
     <commercialProperties>
       <commercialProperty>
-        <address>Hao Lac</address>
-        <price>13000</price>
-        <description>Big Office space</description>
+        <address>FPT University</address>
+        <price>admin</price>
+        <description>admin</description>
         <status>Available</status>
-        <landlord>Fakunle Samuel</landlord>
-        <building>Commercial</building>
-        <type>commercial</type>
-      </commercialProperty>
-      <commercialProperty>
-        <address>Hoa Lac</address>
-        <price>125</price>
-        <description>Commercial Property</description>
-        <status>Available</status>
-        <landlord />
-        <building>Commercial</building>
+        <landlord>Oga John</landlord>
+        <building>Building</building>
         <type>commercial</type>
       </commercialProperty>
     </commercialProperties>
     <residentialProperties />
-    <vacantlandProperties>
-      <vacantlandProperty>
-        <address>FPT University</address>
-        <price>1200</price>
+    <vacantLandProperties>
+      <vacantLandProperty>
+        <address>life</address>
+        <price>admin</price>
         <description>admin</description>
         <status>Available</status>
         <landlord>Oga John</landlord>
-        <size />
+        <size>2345678</size>
         <type>vacantland</type>
-      </vacantlandProperty>
-    </vacantlandProperties>
+      </vacantLandProperty>
+    </vacantLandProperties>
   </properties>
 </REMS>

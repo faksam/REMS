@@ -17,8 +17,9 @@
 
         
     <%@include file='navigation.jsp'%>
-        <title>Add Property - Real Estate Management</title>
-
+        <title>Search Property - Real Estate Management</title>
+        <link href="css/magicslideshow.css" rel="stylesheet" type="text/css"/>
+        <script src="js/magicslideshow.js" type="text/javascript"></script>
     </head>
     <body>
       
@@ -104,7 +105,7 @@
 
                                     Element rootElement = xmlDoc.getRootElement();
                                     Element properties = rootElement.getChild("properties");
-                                    Element VacantLands = properties.getChild("vacantLandProperties");
+                                    Element VacantLands = properties.getChild("vacantlandProperties");
                                     Element Residentials = properties.getChild("residentialProperties");
                                     Element Commercials = properties.getChild("commercialProperties");
 
@@ -129,7 +130,14 @@
                                 <td><%=Landlord%></td>
                                 <td><%=Type%></td>
                                 <% if((session.getAttribute("Manager")!=null)){ %>
-                                 <td><a href="updateProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">Update</a> | <a href="deleteProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">Delete</a></td>
+                                <td>
+                                    <a onclick='return confirm("You want to Update this Property?")' href="updateProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">
+                                        Update
+                                    </a> | 
+                                    <a onclick='return confirm("Do you want to Delete this Property?")' href="deleteProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">
+                                        Delete
+                                    </a>
+                                </td>
                             
                                <% }%>
                                 </tr>
@@ -158,8 +166,14 @@
                                 <td><%=Landlord%></td>
                                 <td><%=Type%></td>
                                 <% if((session.getAttribute("Manager")!=null)){ %>
-                                 <td><a href="updateProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">Update</a> | <a href="deleteProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">Delete</a></td>
-                            
+                                 <td>
+                                    <a onclick='return confirm("You want to Update this Property?")' href="updateProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">
+                                        Update
+                                    </a> | 
+                                    <a onclick='return confirm("Do you want to Delete this Property?")' href="deleteProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">
+                                        Delete
+                                    </a>
+                                </td>
                                <% }%>
                             </tr>
                             <%
@@ -186,8 +200,14 @@
                                 <td><%=Landlord%></td>
                                 <td><%=Type%></td>
                             <% if((session.getAttribute("Manager")!=null)){ %>
-                                 <td><a href="updateProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">Update</a> | <a href="deleteProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">Delete</a></td>
-                            
+                                 <td>
+                                    <a onclick='return confirm("You want to Update this Property?")' href="updateProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">
+                                        Update
+                                    </a> | 
+                                    <a onclick='return confirm("Do you want to Delete this Property?")' href="deleteProperty.jsp?Address=<%=Address%>&Type=<%=Type%>">
+                                        Delete
+                                    </a>
+                                </td>
                                <% }%>    
                             </tr>
                             <%

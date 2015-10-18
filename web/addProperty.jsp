@@ -31,7 +31,7 @@
 
         <div class="container">
             <div class="form-group">
-                <form>
+                <form novalidate>
                     <h1>Add Property</h1>
                     <hr />
 
@@ -42,7 +42,7 @@
                         <option value="Commercial Property">Commercial Property</option>
                         <option value="Residential Property">Residential Property</option>
                     </select>
-
+                    <br><br>
                     <script>
 
                         document.getElementById("propType").addEventListener("change", display);
@@ -86,9 +86,19 @@
                     </script>
                     <div id="prop" style="visibility: hidden; display: none;">
                         <p>Address: </p><input class="form-control" type="text" name="txtAddress" value="" />
-                        <p>Price: </p><input class="form-control" type="text" name="txtPrice" value="" />
-                        <p>Description: </p><input class="form-control" type="password" name="txtDescription" value="" />
-                        <p>Status: </p><input class="form-control" type="text" name="txtStatus" value="" />
+                        <br><br>
+                        <p>Price(USD): </p><input  class="form-control" type="number" min="1" name="txtPrice" value="" />
+                        <br><br>
+                        <p>Description: </p><input class="form-control" type="text" name="txtDescription" value="" />
+                        <br><br>
+                        <p>Status: </p>
+                        <select class="form-control" name="txtStatus">
+                        <option value=""></option>
+                        <option value="Available">Available</option>
+                        <option value="Sold">Sold</option>
+                        <option value="Leased">Leased</option>
+                        </select><br><br>
+                        
                         <%    
                          if((session.getAttribute("Landlord") == null))
                         {
@@ -125,30 +135,37 @@
                         }else
                          {
                              %>
-                        <p>Landlord: </p>
-                        <select class="form-control" name="txtLandlord">
-                            <option><%=currentUser%></option>
+                            <option value="<%=currentUser%>"><%=currentUser%></option>
                         <%
                          }
                         %>
 
                         </select>
+                        <br><br>
+                        
                     </div>
 
                     <div id="res" style="visibility: hidden; display: none;">
-                        <p>Rooms: </p><input class="form-control" type="text" name="txtRooms" value="" />
-                        <p>Bath: </p><input class="form-control" type="text" name="txtBath" value="" />
-                        <p>Living Area: </p><input class="form-control" type="password" name="txtLivingArea" value="" />
-                        <p>Residential Type: </p><input class="form-control" type="password" name="txtResidential" value="" />
+                        <p>No of Rooms: </p><input class="form-control" type="number" min="1" name="txtRooms" value="" />
+                        <br><br>
+                        <p>No of Bath: </p><input class="form-control" type="number" min="1" name="txtBath" value="" />
+                        <br><br>
+                        <p>Living Area(sqr/meter): </p><input class="form-control" type="number" min="1" name="txtLivingArea" value="" />
+                        <br><br>
+                        <p>Residential Type: </p><input class="form-control" type="text" name="txtResidential" value="residential" />
                     </div>
 
                     <div id="com" style="visibility: hidden; display: none;"> 
+                        <br><br>
                         <p>Building: </p><input class="form-control" type="text" name="txtBuilding" value="" />
-                        <p>Commercial Type: </p><input class="form-control" type="password" name="txtCommercial" value="" />
+                        <br><br>
+                        <p>Commercial Type: </p><input class="form-control" type="text" name="txtCommercial" value="commercial" />
                     </div>
 
                     <div id="vac" style="visibility: hidden; display: none;">
-                        <p>Size:</p><input class="form-control" type="password" name="txtSize" value="" />
+                        <br><br>
+                        <p>Size(sqr/meter):</p><input class="form-control" type="number" min="10" name="txtSize" value="" />
+                        
                     </div>
 
                     <br><br>

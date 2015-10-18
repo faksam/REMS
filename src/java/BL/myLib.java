@@ -342,9 +342,9 @@ public class myLib {
             
             Element rootElement = xmlDoc.getRootElement();
             Element properties = rootElement.getChild("properties");
-            Element vacantLandProperties = properties.getChild("vacantLandProperties");
+            Element vacantLandProperties = properties.getChild("vacantlandProperties");
             
-            Element vacantLandProperty = new Element("vacantLandProperty");
+            Element vacantLandProperty = new Element("vacantlandProperty");
             
             Element address = new Element("address");
             Element price = new Element("price");

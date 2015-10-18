@@ -29,38 +29,39 @@
     </head>
     <body>
         <div class="container">
-             <%
             
-            String Type = request.getParameter("Type");
-            String Name = request.getParameter("Name");
-            String Username = "";
-            String Password = "";
+        <%
             
-            String _Type = request.getParameter("Type");
-            String _Name = request.getParameter("Name");
-            String _Username = request.getParameter("Userame");
-            String _Password = "";
-            
+            String _PropType = request.getParameter("Type");
+           
+            String _Address = request.getParameter("Address");
             Document xmlDoc = new Document();
             SAXBuilder saxBuilder = new SAXBuilder();
             xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
             
-            
+            String Address = "";
+            String Price = "";
+            String Description = "";
+            String Status = "";
+            String Landlord = "";
+            String Type = "";
 
             Element rootElement = xmlDoc.getRootElement();
-            Element _types = rootElement.getChild(Type.toLowerCase()+"s");
-            //Element _type = _types.getChild(Type);
+            Element properties = rootElement.getChild("properties");
+            Element _Type = properties.getChild(_PropType+"Properties");
             Element node =null;
             
-            List<Element> lstNodes = _types.getChildren();
+            List<Element> lstNodes = _Type.getChildren();
                 for (int i = 0; i < lstNodes.size(); i++) {
                    node = (Element) lstNodes.get(i);
-            _Name = node.getChildText("name");
-            _Username = node.getChildText("username");
-            _Password = node.getChildText("password");
-            _Type = node.getChildText("type");
-            
-            if (Name.equalsIgnoreCase(_Name) && Type.equalsIgnoreCase(_Type)) 
+
+            Address = node.getChildText("address");
+            Price = node.getChildText("price");
+            Description = node.getChildText("description");
+            Status = node.getChildText("status");
+            Landlord = node.getChildText("landlord");
+            Type = node.getChildText("type");
+            if (Address.equalsIgnoreCase(_Address)) 
             {
                 node.detach();
                 break;
@@ -69,6 +70,7 @@
             outFile.setFormat(Format.getPrettyFormat());
             outFile.output(xmlDoc, new FileWriter(myLib.getxmlFile()));				
             System.out.println("Updated succefully!");
+            response.sendRedirect("searchProperty.jsp");
         %>
         </div>
     </body>

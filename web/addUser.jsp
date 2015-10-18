@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
             <p>Account type:</p>
-            <select class="form-control" name="AccountType">
+            <select required="required" class="form-control" name="AccountType">
                 <%    
                          if((session.getAttribute("Landlord") == null))
                         {%>

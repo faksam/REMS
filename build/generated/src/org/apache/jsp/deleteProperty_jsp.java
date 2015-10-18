@@ -3,13 +3,27 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.io.FileWriter;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+import java.io.File;
+import java.util.List;
+import org.jdom2.Element;
+import BL.myLib;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.Document;
 
-public final class navigation_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class deleteProperty_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants.add("/navigation.jsp");
+  }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -41,6 +55,30 @@ public final class navigation_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("       ");
+
+            if((session.getAttribute("Manager")== null))
+                if((session.getAttribute("Landlord")== null))
+                    response.sendRedirect("login.jsp");
+       
+      out.write("\n");
+      out.write("        \n");
+      out.write("    ");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -199,6 +237,58 @@ public final class navigation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </a>\n");
       out.write("            </div>\n");
       out.write("        </header>\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+      out.write("\n");
+      out.write("    <title>Update Property - Real Estate Management</title>\n");
+      out.write("        \n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        <div class=\"container\">\n");
+      out.write("             ");
+
+            
+            String Type = request.getParameter("Type");
+            String Name = request.getParameter("Name");
+            String Username = "";
+            String Password = "";
+            
+            String _Type = request.getParameter("Type");
+            String _Name = request.getParameter("Name");
+            String _Username = request.getParameter("Userame");
+            String _Password = "";
+            
+            Document xmlDoc = new Document();
+            SAXBuilder saxBuilder = new SAXBuilder();
+            xmlDoc = saxBuilder.build(new File(myLib.getxmlFile()));
+            
+            
+
+            Element rootElement = xmlDoc.getRootElement();
+            Element _types = rootElement.getChild(Type.toLowerCase()+"s");
+            //Element _type = _types.getChild(Type);
+            Element node =null;
+            
+            List<Element> lstNodes = _types.getChildren();
+                for (int i = 0; i < lstNodes.size(); i++) {
+                   node = (Element) lstNodes.get(i);
+            _Name = node.getChildText("name");
+            _Username = node.getChildText("username");
+            _Password = node.getChildText("password");
+            _Type = node.getChildText("type");
+            
+            if (Name.equalsIgnoreCase(_Name) && Type.equalsIgnoreCase(_Type)) 
+            {
+                node.detach();
+                break;
+            }}
+            XMLOutputter outFile = new XMLOutputter();
+            outFile.setFormat(Format.getPrettyFormat());
+            outFile.output(xmlDoc, new FileWriter(myLib.getxmlFile()));				
+            System.out.println("Updated succefully!");
+        
+      out.write("\n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

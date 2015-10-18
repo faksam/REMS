@@ -64,6 +64,7 @@
             
             if (Name.equalsIgnoreCase(_Name)&&Type.equalsIgnoreCase(_Type)&&Username.equalsIgnoreCase(_Username)) 
             {
+                node.detach();
                 break;
             }}
             XMLOutputter outFile = new XMLOutputter();
@@ -102,7 +103,7 @@
         <%
                 if(request.getParameter("btnUpdateUser")!=null){
                     boolean found=false;
-                    node.detach();
+                    
                     _Type = request.getParameter("txtType");
                     _Username = request.getParameter("txtUsername");
                     _Password = request.getParameter("txtPassword");
@@ -113,10 +114,7 @@
                     response.sendRedirect("searchUser.jsp");
                  
                 }
-                outFile = new XMLOutputter();
-            outFile.setFormat(Format.getPrettyFormat());
-            outFile.output(xmlDoc, new FileWriter(myLib.getxmlFile()));				
-            System.out.println("Updated succefully!");
+                
     %>
     </body>
     <%@include file='footer.jsp'%>
